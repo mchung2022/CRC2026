@@ -5,7 +5,7 @@ const ConfigManager = {
   LS_KEY_API_URL: 'crc_project_gas_api_url',
 
   // Default API URL (can be overridden by user in UI)
-  defaultApiUrl: '',
+  defaultApiUrl: 'https://script.google.com/macros/s/AKfycbyUkeklacJjgwRjw38kkEKRCzxDArbFvixQAv2IWLglTxL6Bhr7o7ZV0ujmcTrt6Rsj/exec',
 
   /**
    * Get the active Google Apps Script API URL

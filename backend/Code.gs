@@ -71,7 +71,7 @@ function addDataToSheet(sheetName, data) {
       "ShortAnswer1", "ShortAnswer2", "CovenantStatement"
     ];
   } else if (sheetName === "slides_feedback") {
-    defaultHeaders = ["Timestamp", "SlideNumber", "SlideTitle", "ResponseText"];
+    defaultHeaders = ["Timestamp", "PlayerName", "Department", "SlideNumber", "SlideTitle", "ResponseText"];
   } else {
     defaultHeaders = ["Timestamp", "DataDump"];
   }
@@ -87,14 +87,19 @@ function addDataToSheet(sheetName, data) {
   // Double-check headers are matching and build values array
   var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   
-  // Check if headers match defaultHeaders size (in case it is an existing older sheet version)
-  // If headers do not have ShortAnswer1, append them to the existing sheet headers dynamically
+  // Migrate headers for game_scores if needed
   if (sheetName === "game_scores" && headers.indexOf("ShortAnswer1") === -1) {
-    // Append headers that are missing
     var missingHeaders = ["ShortAnswer1", "ShortAnswer2", "CovenantStatement"];
     var currentLastCol = sheet.getLastColumn();
     sheet.getRange(1, currentLastCol + 1, 1, missingHeaders.length).setValues([missingHeaders]);
-    // Refresh headers mapping
+    headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  }
+
+  // Migrate headers for slides_feedback if needed (adding PlayerName and Department to older versions)
+  if (sheetName === "slides_feedback" && headers.indexOf("PlayerName") === -1) {
+    var missingFeedbackHeaders = ["PlayerName", "Department"];
+    var currentLastCol = sheet.getLastColumn();
+    sheet.getRange(1, currentLastCol + 1, 1, missingFeedbackHeaders.length).setValues([missingFeedbackHeaders]);
     headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   }
 

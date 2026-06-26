@@ -1,15 +1,61 @@
-/* js/slides.js - Embedded Reveal.js and Comparison Slider Controller */
+/* js/slides.js - Embedded Reveal.js and Student Login Controller */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Reveal.js in Embedded Mode
+  // 1. Student Login Modal Controller
+  const authModal = document.getElementById('auth-modal');
+  const authBackdrop = document.getElementById('auth-backdrop');
+  const btnStart = document.getElementById('btn-start-presentation');
+  const studentNameInput = document.getElementById('student-name');
+  const studentDeptInput = document.getElementById('student-dept');
+  const userDisplay = document.getElementById('user-display');
+
+  // Check Session Storage for logged in student
+  const savedName = sessionStorage.getItem('crc_student_name');
+  const savedDept = sessionStorage.getItem('crc_student_dept');
+
+  if (savedName && savedDept) {
+    closeAuthModal(savedName, savedDept);
+  } else {
+    // Prevent keyboard navigation until logged in
+    Reveal.configure({ keyboard: false });
+  }
+
+  btnStart.addEventListener('click', () => {
+    const name = studentNameInput.value.trim();
+    const dept = studentDeptInput.value.trim();
+
+    if (!name || !dept) {
+      alert('請填寫完整姓名與系級後再開始研習！');
+      return;
+    }
+
+    sessionStorage.setItem('crc_student_name', name);
+    sessionStorage.setItem('crc_student_dept', dept);
+    
+    // Enable keyboard navigation
+    Reveal.configure({ keyboard: true });
+    
+    closeAuthModal(name, dept);
+  });
+
+  function closeAuthModal(name, dept) {
+    authModal.classList.add('closed');
+    authBackdrop.classList.add('closed');
+    if (userDisplay) {
+      userDisplay.textContent = `使用者：${name} (${dept})`;
+      userDisplay.style.color = "var(--accent-cyan)";
+    }
+  }
+
+  // 2. Initialize Reveal.js in Embedded Mode
   Reveal.initialize({
-    embedded: true, // Crucial: Runs Reveal inside its container instead of full screen
+    embedded: true,
     controls: true,
     progress: false,
     history: true,
     center: true,
     transition: 'slide',
-    width: 760, // Sized nicely for the split-screen view
+    width: 760,
     height: 520,
     margin: 0.05,
     minScale: 0.2,
@@ -35,10 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const slideTitleElement = slide.querySelector('h1, h2');
     let titleText = slideTitleElement ? slideTitleElement.textContent.trim() : `簡報 ${idx + 1}`;
     
-    // Remove number prefixes from titles for clean menu look (e.g. 1.1, 2.1)
+    // Clean numbers prefix
     titleText = titleText.replace(/^\d+(\.\d+)?\s+/, '');
 
-    // Truncate menu items if too long
+    // Truncate menu items
     if (titleText.length > 18) {
       titleText = titleText.substring(0, 16) + '...';
     }
@@ -49,19 +95,24 @@ document.addEventListener('DOMContentLoaded', () => {
     navItem.setAttribute('data-slide-index', idx);
     
     navItem.addEventListener('click', () => {
-      Reveal.slide(idx);
+      // Allow jumping only if logged in
+      if (sessionStorage.getItem('crc_student_name')) {
+        Reveal.slide(idx);
+      } else {
+        alert('請先在畫面上登錄姓名與系級！');
+      }
     });
 
     sidebarList.appendChild(navItem);
   });
 
-  // Synchronize Reveal.js state with indicators
+  // Sync Reveal.js with elements
   Reveal.on('slidechanged', event => {
     const currentSlide = event.currentSlide;
     const index = event.indexh;
     const total = Reveal.getTotalSlides();
 
-    // 1. Sync Top Bloom Indicators
+    // Sync Bloom Indicators
     const currentBloom = currentSlide.getAttribute('data-bloom') || 'intro';
     Object.values(bloomSteps).forEach(step => {
       if (step) step.classList.remove('active');
@@ -70,11 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
       bloomSteps[currentBloom].classList.add('active');
     }
 
-    // 2. Sync Custom Progress Bar
+    // Sync Custom Progress Bar
     const percent = total > 1 ? (index / (total - 1)) * 100 : 0;
     customProgressBar.style.width = `${percent}%`;
 
-    // 3. Sync Left Sidebar Menu active state
+    // Sync Left Sidebar Menu active state
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => item.classList.remove('active'));
     
@@ -84,13 +135,13 @@ document.addEventListener('DOMContentLoaded', () => {
       activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
 
-    // 4. Force resize of comparison slider on slide 13 entry (index 12)
+    // Force resize of comparison slider on slide 13 entry (index 12)
     if (index === 12) {
       initComparisonSlider();
     }
   });
 
-  // Initial Sync
+  // Initial Sync on load
   setTimeout(() => {
     const index = Reveal.getIndices().h;
     const initialSlide = Reveal.getCurrentSlide();
@@ -116,17 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initComparisonSlider() {
     if (sliderInitialized) {
-      // Re-align locked panel width to actual container width
       adjustSliderWidths();
       return;
     }
 
     const container = document.querySelector('.slider-container');
     const handle = document.getElementById('slider-handle');
-    const afterPanel = document.getElementById('slider-after-panel');
-    const rightContent = document.getElementById('slider-content-right');
+    const beforePanel = document.getElementById('slider-before-panel');
+    const leftContent = document.getElementById('slider-content-left');
 
-    if (!container || !handle || !afterPanel || !rightContent) return;
+    if (!container || !handle || !beforePanel || !leftContent) return;
 
     adjustSliderWidths();
     sliderInitialized = true;
@@ -143,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       percentage = Math.max(3, Math.min(97, percentage));
 
       handle.style.left = `${percentage}%`;
-      afterPanel.style.width = `${percentage}%`;
+      beforePanel.style.width = `${percentage}%`;
     }
 
     // Mouse down / Touch start
@@ -180,10 +230,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function adjustSliderWidths() {
     const container = document.querySelector('.slider-container');
-    const rightContent = document.getElementById('slider-content-right');
-    if (container && rightContent) {
-      // Make sure the width of the right content matches the container width exactly
-      rightContent.style.width = `${container.clientWidth}px`;
+    const leftContent = document.getElementById('slider-content-left');
+    const stableContent = document.getElementById('slider-content-stable');
+    if (container) {
+      if (leftContent) leftContent.style.width = `${container.clientWidth}px`;
+      if (stableContent) stableContent.style.width = `${container.clientWidth}px`;
     }
   }
 });
@@ -200,10 +251,15 @@ async function submitReflection(slideNum, slideTitle, textareaId) {
     return;
   }
 
+  const name = sessionStorage.getItem('crc_student_name') || '未登錄';
+  const dept = sessionStorage.getItem('crc_student_dept') || '未登錄';
+
   const responseText = textarea.value.trim();
   showStatus(statusDiv, '⏳ 資料傳送中...', 'loading');
 
   const payload = {
+    PlayerName: name,
+    Department: dept,
     SlideNumber: slideNum,
     SlideTitle: slideTitle,
     ResponseText: responseText

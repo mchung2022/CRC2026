@@ -9,6 +9,43 @@
   position: relative;
 }
 
+/* Auth Modal overlay styling at start */
+.auth-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 7, 15, 0.85);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  z-index: 9998;
+  transition: opacity 0.5s ease;
+}
+
+.auth-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 90%;
+  max-width: 460px;
+  padding: 35px;
+  box-shadow: 0 0 35px rgba(0, 242, 254, 0.25);
+  animation: modalPop 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes modalPop {
+  0% { transform: translate(-50%, -40%); opacity: 0; }
+  100% { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+.auth-modal.closed, .auth-modal-backdrop.closed {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Sidebar Menu styling (Left Side) */
 .sidebar {
   width: 280px;
@@ -119,7 +156,7 @@
 .reveal-container {
   flex-grow: 1;
   width: 100%;
-  height: calc(100% - 100px); /* Account for top bar and bottom progress */
+  height: calc(100% - 100px);
   position: relative;
   overflow: hidden;
 }
@@ -182,7 +219,7 @@
   color: var(--text-secondary) !important;
 }
 
-/* Custom Progress Bar at bottom of Main Content */
+/* Custom Progress Bar */
 .slides-custom-progress {
   position: absolute;
   bottom: 0;
@@ -216,7 +253,7 @@
 .tip-box { background: rgba(255, 159, 67, 0.04); border-left: 4px solid var(--accent-orange); }
 .tip-box h4 { color: var(--accent-orange) !important; }
 
-/* Interactive Comparison Slider styling */
+/* Interactive Comparison Slider styling (No-CRC z-index 2 overlay covers With-CRC z-index 1 background) */
 .slider-container {
   position: relative;
   width: 100%;
@@ -236,16 +273,20 @@
   height: 100%;
 }
 
-.before-panel {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.03) 0%, rgba(10, 13, 26, 0.95) 100%);
-  color: var(--text-secondary);
-}
-
+/* With CRC is background (underneath) */
 .after-panel {
   background: linear-gradient(135deg, rgba(0, 242, 254, 0.05) 0%, rgba(10, 13, 26, 0.98) 100%);
-  width: 50%; /* Default width */
+  color: var(--text-secondary);
+  z-index: 1;
+}
+
+/* No CRC is z-index 2 overlay sliding from left */
+.before-panel {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.03) 0%, rgba(10, 13, 26, 0.95) 100%);
+  width: 50%; /* Default width, dynamically changed by JS */
   overflow: hidden;
   z-index: 2;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .slider-panel-content {
@@ -257,10 +298,10 @@
 .slider-handle {
   position: absolute;
   top: 0;
-  left: 50%; /* Sync with after-panel width */
+  left: 50%;
   width: 4px;
   height: 100%;
-  background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+  background: linear-gradient(to bottom, var(--accent-pink), var(--accent-purple));
   cursor: ew-resize;
   z-index: 10;
   transform: translateX(-50%);
@@ -280,14 +321,14 @@
   height: 36px;
   border-radius: 50%;
   background: var(--bg-secondary);
-  border: 2px solid var(--accent-cyan);
-  color: var(--accent-cyan);
+  border: 2px solid var(--accent-pink);
+  color: var(--accent-pink);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
   font-size: 1.1rem;
-  box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+  box-shadow: 0 0 15px rgba(247, 37, 133, 0.6);
   user-select: none;
 }
 

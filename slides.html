@@ -19,6 +19,24 @@
   <div class="bg-glow bg-glow-1"></div>
   <div class="bg-glow bg-glow-2"></div>
 
+  <!-- Student Info Input Overlay (Required at Start) -->
+  <div class="auth-modal-backdrop" id="auth-backdrop"></div>
+  <div class="auth-modal glass" id="auth-modal">
+    <h3 style="color: var(--accent-cyan); font-weight: 800; margin-bottom: 10px; font-size: 1.3rem; text-align: center;">🧭 師培生學習登錄</h3>
+    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5; text-align: center;">
+      請輸入您的姓名與系級班別以開啟 CRC 簡報。您的回答與反思將會即時串接寫入 Google Sheets 中。
+    </p>
+    <div class="form-group" style="margin-bottom: 12px;">
+      <label for="student-name">師培生姓名</label>
+      <input type="text" id="student-name" class="form-input" placeholder="例如：王小明" required>
+    </div>
+    <div class="form-group" style="margin-bottom: 20px;">
+      <label for="student-dept">系級與班別</label>
+      <input type="text" id="student-dept" class="form-input" placeholder="例如：教育系大二甲班" required>
+    </div>
+    <button class="btn btn-primary" id="btn-start-presentation" style="width: 100%; padding: 12px;">開始研習簡報 &rarr;</button>
+  </div>
+
   <!-- App Layout Grid -->
   <div class="app-layout">
     
@@ -27,6 +45,7 @@
       <div class="sidebar-header">
         <h3 style="color: var(--accent-cyan); font-size: 1.2rem; font-weight: 800; margin-bottom: 5px;">📜 簡報目錄</h3>
         <p style="font-size: 0.75rem; color: var(--text-muted);">50 頁 Bloom 認知導引</p>
+        <div style="font-size: 0.7rem; color: var(--accent-purple); font-weight: 600; margin-top: 5px;" id="user-display">使用者：未登錄</div>
       </div>
       <div class="sidebar-nav-list" id="sidebar-nav-list">
         <!-- Generated dynamically in slides.js -->
@@ -93,9 +112,9 @@
                 </div>
                 <div>
                   <div class="reflect-box">
-                    <h4>✍️ 輸入您的反思</h4>
+                    <h4 style="color: var(--accent-purple) !important;">✍️ 【素養討論一】課前探究看法</h4>
                     <textarea id="ref-p3" class="form-input" style="height: 100px; resize: none;" placeholder="請輸入您的看法..."></textarea>
-                    <button class="btn btn-primary" onclick="submitReflection(3, '課前探究', 'ref-p3')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出反思</button>
+                    <button class="btn btn-primary" onclick="submitReflection(3, '【素養討論一】課前探究', 'ref-p3')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出反思</button>
                     <div id="status-p3" class="status-message"></div>
                   </div>
                 </div>
@@ -176,7 +195,7 @@
             <section data-bloom="remember">
               <h2>1.4 核心原則一：禁止歧視 (Art. 2)</h2>
               <div class="slide-content-full">
-                <p>國家及學校應採取一切適當措施，確保兒童不因其身份、行為或發表之言論而遭受歧視。</p>
+                <p>國家及學校應採取一切適當措施，確保兒童不因其身份、行為 or 發表之言論而遭受歧視。</p>
                 <div class="tip-box">
                   <h4>💡 中學校園記憶點</h4>
                   <p>常見違規樣態：<b>後段班學生被限制使用圖書館、記過學生被禁止參加校外教學</b>。這些做法直接違反了「禁止歧視原則」與「受教權平等原則」。</p>
@@ -229,30 +248,17 @@
               </p>
             </section>
 
-            <!-- P13: 對比拉桿 (核心對比：無 CRC vs. 有 CRC) -->
+            <!-- P13: 對比拉桿 (核心對比：沒有 CRC 蓋住 有 CRC) -->
             <section data-bloom="understand">
               <h2 style="font-size: 1.8rem !important; margin-bottom: 10px !important;">2.1 歷史變革：無 CRC 與 有 CRC 的校園對照</h2>
-              <p style="font-size: 0.85rem !important; margin-bottom: 10px; color: var(--text-muted);">左右拖曳中間的拉桿，對比傳統威權管理與落實 CRC 精神的校園實務差異：</p>
+              <p style="font-size: 0.85rem !important; margin-bottom: 10px; color: var(--text-muted);">左右拖曳中間的拉桿：【向右拉時】「沒有 CRC」會覆蓋蓋住「有 CRC」之內文。</p>
               
               <!-- Interactive Split-Screen Slider Component -->
               <div class="slider-container">
-                <!-- Underneath / Background (Before CRC) -->
-                <div class="slider-panel before-panel">
-                  <div class="slider-panel-content">
-                    <div style="font-size: 2.5rem; margin-bottom: 5px;">⛓️ 傳統威權校園 (沒有 CRC)</div>
-                    <ul style="font-size: 0.8rem !important; color: #ff8787 !important;">
-                      <li><b>管教客體</b>：學生是受支配者，必須無條件服從師長，沒有討論空間。</li>
-                      <li><b>無端安全檢查</b>：教官可隨意以「抽查」名義翻箱倒櫃搜查書包，無視個人隱私。</li>
-                      <li><b>嚴厲懲罰</b>：遲到即罰站、抄課文、強制留校自習，以恐懼維持班級秩序。</li>
-                      <li><b>服儀強制規定</b>：嚴格限制髮式、染髮，嚴冬時仍強迫校服必須穿在最外側。</li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <!-- Overlay / Revealing (With CRC) -->
-                <div class="slider-panel after-panel" id="slider-after-panel">
-                  <div class="slider-panel-content" id="slider-content-right">
-                    <div style="font-size: 2.5rem; margin-bottom: 5px; color: var(--accent-cyan);">🕊️ 現代人權校園 (有 CRC 落實)</div>
+                <!-- Underneath / Background (With CRC - Right Side) -->
+                <div class="slider-panel after-panel">
+                  <div class="slider-panel-content" id="slider-content-stable">
+                    <div style="font-size: 2.2rem; margin-bottom: 5px; color: var(--accent-cyan);">🕊️ 現代人權校園 (有 CRC 落實)</div>
                     <ul style="font-size: 0.8rem !important; color: #e0f2fe !important;">
                       <li><b>權利主體</b>：學生是獨立個體，學校決策應優先保障其最大利益與發展。</li>
                       <li><b>隱私保障</b>：非有合理懷疑與法定程序，不得隨意搜查書包；輔導紀錄絕對保密。</li>
@@ -262,8 +268,21 @@
                   </div>
                 </div>
                 
+                <!-- Overlay / Sliding (Before CRC - Left Side - Covers z-index 2) -->
+                <div class="slider-panel before-panel" id="slider-before-panel" style="width: 50%;">
+                  <div class="slider-panel-content" id="slider-content-left">
+                    <div style="font-size: 2.2rem; margin-bottom: 5px; color: #ff8787;">⛓️ 傳統威權校園 (沒有 CRC)</div>
+                    <ul style="font-size: 0.8rem !important; color: #ff8787 !important;">
+                      <li><b>管教客體</b>：學生是受支配者，必須無條件服從師長，沒有討論空間。</li>
+                      <li><b>無端安全檢查</b>：教官可隨意以「抽查」名義翻箱倒櫃搜查書包，無視個人隱私。</li>
+                      <li><b>嚴厲懲罰</b>：遲到即罰站、抄課文、強制留校自習，以恐懼維持班級秩序。</li>
+                      <li><b>服儀強制規定</b>：嚴格限制髮式、染髮，嚴冬時仍強迫校服必須穿在最外側。</li>
+                    </ul>
+                  </div>
+                </div>
+                
                 <!-- Draggable Handle -->
-                <div class="slider-handle" id="slider-handle">
+                <div class="slider-handle" id="slider-handle" style="left: 50%;">
                   <div class="slider-handle-line"></div>
                   <div class="slider-handle-button">&harr;</div>
                 </div>
@@ -352,9 +371,9 @@
                 </div>
                 <div>
                   <div class="reflect-box">
-                    <h4>✍️ 輸入您的分析</h4>
+                    <h4 style="color: var(--accent-purple) !important;">✍️ 【素養討論二】威權與人權的界線</h4>
                     <textarea id="ref-p19" class="form-input" style="height: 100px; resize: none;" placeholder="請從法律位階或CRC原則進行分析..."></textarea>
-                    <button class="btn btn-primary" onclick="submitReflection(19, '威權與人權的界線', 'ref-p19')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出分析</button>
+                    <button class="btn btn-primary" onclick="submitReflection(19, '【素養討論二】威權與人權', 'ref-p19')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出分析</button>
                     <div id="status-p19" class="status-message"></div>
                   </div>
                 </div>
@@ -446,7 +465,7 @@
                 <p>搜查學生書包或置物櫃，是侵害人身與財產隱私權的極端行政行為。非有必要，不得為之。</p>
                 <div class="inquiry-box">
                   <h4>⚠️ 法定要件（必須同時滿足）</h4>
-                  <p>1. <b>合理懷疑</b>：有具體事證顯示特定學生攜帶違禁品（如刀械、毒品）。不可因「全班成績退步」或「為了預防」進行普查。</p>
+                  <p>1. <b>合理懷疑</b>：有具體事證顯示特定學生攜帶違禁品（如刀械、毒品）。不可因「全班成績退步」或「為了預防」進行普查規定。</p>
                   <p>2. <b>程序正義</b>：搜查時需有家長代表或學生代表在場，且必須**全程錄影**記錄備查。</p>
                 </div>
               </div>
@@ -502,9 +521,9 @@
                 </div>
                 <div>
                   <div class="reflect-box">
-                    <h4>✍️ 輸入您的雙贏方案</h4>
+                    <h4 style="color: var(--accent-purple) !important;">✍️ 【素養討論三】制定手機保管公約</h4>
                     <textarea id="ref-p30" class="form-input" style="height: 100px; resize: none;" placeholder="請輸入您預期與學生協商的公約草案..."></textarea>
-                    <button class="btn btn-primary" onclick="submitReflection(30, '手機保管公約', 'ref-p30')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出方案</button>
+                    <button class="btn btn-primary" onclick="submitReflection(30, '【素養討論三】手機公約', 'ref-p30')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出方案</button>
                     <div id="status-p30" class="status-message"></div>
                   </div>
                 </div>
@@ -575,7 +594,7 @@
                 <p><b>衝突點</b>：家長認為自己是監護人，有權知道孩子在輔導室說的一切；學生則要求輔導老師保密。</p>
                 <div class="inquiry-box">
                   <h4>💡 CRC 最佳利益衡平法</h4>
-                  <p>輔導紀錄屬於高敏感個人隱私。若學生表示「讓父母知道會導致家庭暴力或關係決裂」，基於<b>兒童最佳利益</b>與<b>隱私權</b>，輔導教師應婉拒直接提供，改由轉譯方式向家長說明孩子的核心需求，而非無條件讓步給監護權。</p>
+                  <p>輔導紀錄屬於高敏感個人隱私。若學生表示「讓父母知道會導致家庭暴力或關係決裂」，基於<b>兒童最佳利益</b>與<b>隱私權</b>，輔導教師應阻攔直接提供，改由轉譯方式向家長說明孩子的核心需求，而非無條件讓步給監護權。</p>
                 </div>
               </div>
             </section>
@@ -627,9 +646,9 @@
                 </div>
                 <div>
                   <div class="reflect-box">
-                    <h4>✍️ 輸入您的結構分析</h4>
+                    <h4 style="color: var(--accent-purple) !important;">✍️ 【素養討論四】解構不合理校規分析</h4>
                     <textarea id="ref-p38" class="form-input" style="height: 100px; resize: none;" placeholder="請列出被侵害的權利與法理缺陷..."></textarea>
-                    <button class="btn btn-primary" onclick="submitReflection(38, '解構不合理校規', 'ref-p38')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出分析</button>
+                    <button class="btn btn-primary" onclick="submitReflection(38, '【素養討論四】解構不合理校規', 'ref-p38')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出分析</button>
                     <div id="status-p38" class="status-message"></div>
                   </div>
                 </div>
@@ -655,7 +674,7 @@
                   <h4>⚖️ 評估矩陣</h4>
                   <ul>
                     <li><b>正面效益</b>：提供學生彌補過錯、透過勞動進行自我反省與社區服務的機會。</li>
-                    <li><b>負面扭曲</b>：若服務內容流於「幫老師跑腿買午餐」、「無保護裝備掃化糞池」，則推卸勞役懲罰，侵害兒童尊嚴，違反 CRC 第 32 條（免受經濟剝削或有害勞動）。</li>
+                    <li><b>負面扭曲</b>：若服務內容流於「幫老師跑腿買午餐」、「無保護裝備掃化糞池」，則純屬勞役懲罰，侵害兒童尊嚴，違反 CRC 第 32 條（免受經濟剝削或有害勞動）。</li>
                     <li><b>改善方向</b>：愛校服務內容應與其犯錯行為具有教育上的關聯性。</li>
                   </ul>
                 </div>
@@ -712,9 +731,9 @@
                 </div>
                 <div>
                   <div class="reflect-box">
-                    <h4>✍️ 輸入您的覺察反思</h4>
+                    <h4 style="color: var(--accent-purple) !important;">✍️ 【素養討論五】自我管教風格評估</h4>
                     <textarea id="ref-p44" class="form-input" style="height: 100px; resize: none;" placeholder="請寫下你對管理與權利權衡的真實看法..."></textarea>
-                    <button class="btn btn-primary" onclick="submitReflection(44, '管教風格評估', 'ref-p44')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出反思</button>
+                    <button class="btn btn-primary" onclick="submitReflection(44, '【素養討論五】管教風格評估', 'ref-p44')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出反思</button>
                     <div id="status-p44" class="status-message"></div>
                   </div>
                 </div>
@@ -797,9 +816,9 @@
                 </div>
                 <div>
                   <div class="glass" style="padding: 15px;">
-                    <h4 style="color: var(--accent-purple); margin-bottom: 5px; font-size: 0.95rem !important;">總結性回饋</h4>
+                    <h4 style="color: var(--accent-purple); margin-bottom: 5px; font-size: 0.95rem !important;">✍️ 【素養討論六】課程總反思</h4>
                     <textarea id="ref-p50" class="form-input" style="height: 80px; resize: none;" placeholder="請輸入您對整套簡報課程的建議或心得..."></textarea>
-                    <button class="btn btn-primary" onclick="submitReflection(50, '課程總反思', 'ref-p50')" style="margin-top: 8px; width: 100%; padding: 6px; font-size: 0.8rem;">送出總反思 &rarr;</button>
+                    <button class="btn btn-primary" onclick="submitReflection(50, '【素養討論六】課程總反思', 'ref-p50')" style="margin-top: 8px; width: 100%; padding: 6px; font-size: 0.8rem;">送出總反思 &rarr;</button>
                     <div id="status-p50" class="status-message"></div>
                   </div>
                 </div>

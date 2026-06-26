@@ -174,9 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.slider-container');
     const handle = document.getElementById('slider-handle');
     const beforePanel = document.getElementById('slider-before-panel');
-    const leftContent = document.getElementById('slider-content-left');
+    const afterPanel = document.getElementById('slider-after-panel');
 
-    if (!container || !handle || !beforePanel || !leftContent) return;
+    if (!container || !handle || !beforePanel || !afterPanel) return;
 
     adjustSliderWidths();
     sliderInitialized = true;
@@ -194,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       handle.style.left = `${percentage}%`;
       beforePanel.style.width = `${percentage}%`;
+      afterPanel.style.width = `${100 - percentage}%`;
     }
 
     // Mouse down / Touch start
@@ -229,12 +230,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function adjustSliderWidths() {
-    const container = document.querySelector('.slider-container');
-    const leftContent = document.getElementById('slider-content-left');
-    const stableContent = document.getElementById('slider-content-stable');
-    if (container) {
-      if (leftContent) leftContent.style.width = `${container.clientWidth}px`;
-      if (stableContent) stableContent.style.width = `${container.clientWidth}px`;
+    const handle = document.getElementById('slider-handle');
+    const beforePanel = document.getElementById('slider-before-panel');
+    const afterPanel = document.getElementById('slider-after-panel');
+    if (handle && beforePanel && afterPanel) {
+      const percentage = parseFloat(handle.style.left) || 50;
+      beforePanel.style.width = `${percentage}%`;
+      afterPanel.style.width = `${100 - percentage}%`;
     }
   }
 });

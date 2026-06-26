@@ -253,44 +253,44 @@
 .tip-box { background: rgba(255, 159, 67, 0.04); border-left: 4px solid var(--accent-orange); }
 .tip-box h4 { color: var(--accent-orange) !important; }
 
-/* Interactive Comparison Slider styling (No-CRC z-index 2 overlay covers With-CRC z-index 1 background) */
+/* Interactive Comparison Slider styling (Side-by-side Flex Layout to prevent overlap and color bleeding) */
 .slider-container {
   position: relative;
   width: 100%;
-  height: 320px;
+  height: 355px; /* Taller to accommodate wrapping text comfortably */
   border: 1px solid var(--glass-border);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   margin-top: 15px;
+  display: flex; /* Flex container */
 }
 
 .slider-panel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: relative; /* Change from absolute to relative for side-by-side flow */
   height: 100%;
+  overflow: hidden; /* Hide overflow when column shrinks */
+  box-sizing: border-box;
 }
 
-/* With CRC is background (underneath) */
+/* With CRC (Right Side) */
 .after-panel {
   background: linear-gradient(135deg, #09202f 0%, #0a0d1a 100%);
   color: var(--text-secondary);
+  width: 50%; /* Adjusted by JS */
   z-index: 1;
 }
 
-/* No CRC is z-index 2 overlay sliding from left */
+/* No CRC (Left Side) */
 .before-panel {
   background: linear-gradient(135deg, #2b1114 0%, #0a0d1a 100%);
-  width: 50%; /* Default width, dynamically changed by JS */
-  overflow: hidden;
+  width: 50%; /* Adjusted by JS */
   z-index: 2;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .slider-panel-content {
-  width: 600px; /* Locked width to prevent text reflow */
+  min-width: 400px; /* Maintain content structure, crop overflow if panel shrinks */
   padding: 20px 25px;
   box-sizing: border-box;
 }

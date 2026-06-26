@@ -275,14 +275,14 @@
 
 /* With CRC is background (underneath) */
 .after-panel {
-  background: linear-gradient(135deg, rgba(0, 242, 254, 0.05) 0%, rgba(10, 13, 26, 0.98) 100%);
+  background: linear-gradient(135deg, #09202f 0%, #0a0d1a 100%);
   color: var(--text-secondary);
   z-index: 1;
 }
 
 /* No CRC is z-index 2 overlay sliding from left */
 .before-panel {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.03) 0%, rgba(10, 13, 26, 0.95) 100%);
+  background: linear-gradient(135deg, #2b1114 0%, #0a0d1a 100%);
   width: 50%; /* Default width, dynamically changed by JS */
   overflow: hidden;
   z-index: 2;

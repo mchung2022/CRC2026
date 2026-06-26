@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Stage definition map
   const stagesInfo = [
     { num: 1, badge: "階段一：法規知識奠基", node: 'node-1' },
-    { num: 2, badge: "階段二：衝突抉擇現場", node: 'node-2' },
+    { num: 2, badge: "階段二：衝突決策現場", node: 'node-2' },
     { num: 3, badge: "階段三：規章體檢批判", node: 'node-3' },
     { num: 4, badge: "階段四：民主共創未來", node: 'node-4' }
   ];

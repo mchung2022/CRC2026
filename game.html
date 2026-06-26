@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRC 學務前線：教師決策模擬戰</title>
-  <meta name="description" content="中學學務情境模擬抉擇遊戲，專為師培生設計，融匯兒童權利公約與 Bloom 認知面向。">
+  <title>CRC 學務前線：教師決策模擬戰 (闖關版)</title>
+  <meta name="description" content="中學學務情境模擬抉擇遊戲，配合題、選擇題、情境題與簡答題之綜合闖關，符合大二師培生20分鐘教學長度。">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/game.css">
 </head>
@@ -17,19 +17,37 @@
     <!-- Header -->
     <header class="game-header">
       <div style="display: flex; align-items: center; gap: 15px;">
-        <a href="index.html" class="btn btn-secondary" style="padding: 6px 15px; font-size: 0.8rem; border-radius: 8px;">
+        <a href="index.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; border-radius: 8px;">
           &larr; 返回首頁
         </a>
-        <h1 class="game-title">CRC 學務前線</h1>
+        <h1 class="game-title">CRC 學務前線：教師抉策模擬戰</h1>
       </div>
-      <div style="font-size: 0.85rem; color: var(--text-muted);">
-        情境決策模擬戰 v1.0
-      </div>
+      <div class="game-stage-indicator" id="stage-badge">階段一：法規知識奠基</div>
     </header>
 
-    <!-- Stats Panel -->
+    <!-- Stage Map / Progress Stepper -->
+    <section class="stage-stepper glass">
+      <div class="stepper-track"></div>
+      <div class="step-node active" id="node-1">
+        <div class="node-circle">1</div>
+        <div class="node-label">法規基礎</div>
+      </div>
+      <div class="step-node" id="node-2">
+        <div class="node-circle">2</div>
+        <div class="node-label">衝突抉擇</div>
+      </div>
+      <div class="step-node" id="node-3">
+        <div class="node-circle">3</div>
+        <div class="node-label">規章體檢</div>
+      </div>
+      <div class="step-node" id="node-4">
+        <div class="node-circle">4</div>
+        <div class="node-label">民主共創</div>
+      </div>
+    </section>
+
+    <!-- HUD Stats Bar -->
     <section class="stats-container">
-      <!-- Stat 1: CRC -->
       <div class="glass stat-card">
         <div class="stat-label">
           <span>🛡️ CRC 權利保障度</span>
@@ -40,7 +58,6 @@
         </div>
       </div>
 
-      <!-- Stat 2: Order -->
       <div class="glass stat-card">
         <div class="stat-label">
           <span>⚖️ 校園管理秩序度</span>
@@ -51,7 +68,6 @@
         </div>
       </div>
 
-      <!-- Stat 3: Professionalism -->
       <div class="glass stat-card">
         <div class="stat-label">
           <span>🎓 教師專業素養度</span>
@@ -63,49 +79,31 @@
       </div>
     </section>
 
-    <!-- Main Workspace -->
-    <main class="game-main">
-      <!-- Left Column: Scenario & Choices -->
-      <div class="glass scenario-card" id="scenario-card">
-        <div>
-          <div class="scenario-header">
-            <span class="scenario-tag" id="bloom-tag">Level: Loading</span>
-            <span style="font-size: 0.85rem; color: var(--text-muted);" id="case-counter">Case 1 / 6</span>
-          </div>
-          
-          <h2 class="scenario-title" id="scenario-title">正在加載學務個案...</h2>
-          
-          <div class="scenario-illustration" id="scenario-icon">
-            🎓
-          </div>
-
-          <div class="inquiry-bubble">
-            <span style="font-size: 1.2rem;">❓</span>
-            <span id="inquiry-text">探究思考：您將採取何種學務立場？</span>
-          </div>
-
-          <p class="scenario-description" id="scenario-description">
-            正在加載個案細節與衝突情境說明，請稍候。
-          </p>
-        </div>
-
-        <!-- Choices Box -->
-        <div class="choices-panel" id="choices-container">
-          <!-- Choice buttons will be injected here -->
+    <!-- Main Game Board Container -->
+    <main class="game-main-layout">
+      <!-- Left Column: Active Question Workspace -->
+      <div class="glass workspace-card" id="workspace-card">
+        <!-- Inside this container we will inject dynamic content according to current stage -->
+        <div id="game-content-area">
+          <h2 style="text-align: center; margin-top: 50px;">載入關卡任務中...</h2>
         </div>
       </div>
 
-      <!-- Right Column: Decision Feed Log -->
-      <div class="glass" style="padding: 25px; display: flex; flex-direction: column;">
-        <div class="feed-panel">
-          <div class="feed-header">
-            <span>📜 導師決策歷程錄</span>
-            <span style="color: var(--accent-cyan); font-size: 0.8rem;" id="decision-count">0 已解</span>
+      <!-- Right Column: HUD logs & progress -->
+      <div class="glass status-sidebar">
+        <div class="sidebar-block">
+          <h4>📋 本關任務進度</h4>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="task-progress" style="width: 0%;"></div>
           </div>
-          <div class="feed-list" id="feed-list">
-            <!-- Game feed item template -->
-            <div class="feed-item" style="border: 1px dashed var(--glass-border); text-align: center; color: var(--text-muted); padding: 40px 10px;">
-              暫無決策紀錄。請在左側做出您的第一個學務決策！
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;" id="progress-text">已完成 0 / 5 題</p>
+        </div>
+
+        <div class="sidebar-block" style="flex-grow: 1; display: flex; flex-direction: column;">
+          <h4>📜 即時抉策紀錄日誌</h4>
+          <div class="log-feed" id="log-feed">
+            <div style="color: var(--text-muted); text-align: center; padding: 20px 0; font-size: 0.8rem;">
+              暫無日誌。通關答題後會在此即時更新您的決策影響。
             </div>
           </div>
         </div>
@@ -116,47 +114,46 @@
   <!-- End Game Modal -->
   <div class="modal-overlay" id="end-modal">
     <div class="glass result-card">
-      <div style="font-size: 3rem; margin-bottom: 10px;">🏆</div>
-      <h2 style="color: #fff;">挑戰完成！</h2>
-      <p style="color: var(--text-muted); font-size: 0.85rem;">您的決策特徵已完成運算，分析報告如下：</p>
+      <div style="font-size: 3rem; margin-bottom: 5px;">🏆</div>
+      <h2 style="color: #fff; margin-bottom: 5px;">全關卡順利擊破！</h2>
+      <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 15px;">您已完成不低於 20 分鐘的深入研討，以下是您的教育人格特徵：</p>
       
-      <div class="persona-title" id="persona-title">民主教育領航員</div>
-      <p class="persona-desc" id="persona-desc">
-        您能在確保校園基本常規的同時，將學生的主體權利置於重要考量，善用親師生協商與溝通，是實踐 CRC 的典範教師。
-      </p>
+      <div class="persona-title" id="persona-title">運算中...</div>
+      <p class="persona-desc" id="persona-desc">分析描述加載中。</p>
 
-      <!-- Final metrics -->
       <div class="result-scores">
         <div class="result-score-item">
           <div class="result-score-label">🛡️ CRC 得分</div>
-          <div class="result-score-num" style="color: var(--accent-cyan);" id="res-crc">85%</div>
+          <div class="result-score-num style-crc" id="res-crc">50%</div>
         </div>
         <div class="result-score-item">
           <div class="result-score-label">⚖️ 秩序得分</div>
-          <div class="result-score-num" style="color: var(--accent-purple);" id="res-order">70%</div>
+          <div class="result-score-num style-order" id="res-order">50%</div>
         </div>
         <div class="result-score-item">
           <div class="result-score-label">🎓 專業得分</div>
-          <div class="result-score-num" style="color: var(--accent-pink);" id="res-prof">90%</div>
+          <div class="result-score-num style-prof" id="res-prof">50%</div>
         </div>
       </div>
 
       <!-- GAS Data Upload Form -->
       <div class="submit-form">
-        <h4 style="text-align: left; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 5px;">✍️ 學習成果上傳（串接 Google Sheet）</h4>
+        <h4 style="text-align: left; color: var(--text-primary); font-size: 0.85rem; margin-bottom: 5px;">✍️ 學習成果上傳（將紀錄所有簡答內容與最終得分）</h4>
         
-        <div class="form-group">
-          <label for="player-name">師培生姓名</label>
-          <input type="text" id="player-name" class="form-input" placeholder="請輸入姓名" required>
-        </div>
-        <div class="form-group">
-          <label for="player-id">學號</label>
-          <input type="text" id="player-id" class="form-input" placeholder="請輸入學號" required>
+        <div class="form-group-row">
+          <div class="form-group" style="flex: 1;">
+            <label for="player-name">師培生姓名</label>
+            <input type="text" id="player-name" class="form-input" placeholder="請輸入姓名" required>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label for="player-id">學號</label>
+            <input type="text" id="player-id" class="form-input" placeholder="請輸入學號" required>
+          </div>
         </div>
 
-        <div style="display: flex; gap: 15px; width: 100%; margin-top: 10px;">
-          <button class="btn btn-secondary" id="btn-restart" style="flex: 1;">重新挑戰</button>
-          <button class="btn btn-primary" id="btn-submit-score" style="flex: 2;">送出成果 &rarr;</button>
+        <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
+          <button class="btn btn-secondary" id="btn-restart" style="flex: 1; padding: 10px;">重新挑戰</button>
+          <button class="btn btn-primary" id="btn-submit-score" style="flex: 2; padding: 10px;">上傳至 Google Sheet &rarr;</button>
         </div>
         <div id="upload-status" class="status-message"></div>
       </div>

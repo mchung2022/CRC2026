@@ -65,7 +65,11 @@ function addDataToSheet(sheetName, data) {
   // Define default headers based on the sheet name
   var defaultHeaders = [];
   if (sheetName === "game_scores") {
-    defaultHeaders = ["Timestamp", "PlayerName", "StudentID", "CRC_Score", "Order_Score", "Professional_Score", "Persona", "ChoicePath"];
+    defaultHeaders = [
+      "Timestamp", "PlayerName", "StudentID", "CRC_Score", "Order_Score", 
+      "Professional_Score", "Persona", "ChoicePath", 
+      "ShortAnswer1", "ShortAnswer2", "CovenantStatement"
+    ];
   } else if (sheetName === "slides_feedback") {
     defaultHeaders = ["Timestamp", "SlideNumber", "SlideTitle", "ResponseText"];
   } else {
@@ -82,6 +86,18 @@ function addDataToSheet(sheetName, data) {
 
   // Double-check headers are matching and build values array
   var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  
+  // Check if headers match defaultHeaders size (in case it is an existing older sheet version)
+  // If headers do not have ShortAnswer1, append them to the existing sheet headers dynamically
+  if (sheetName === "game_scores" && headers.indexOf("ShortAnswer1") === -1) {
+    // Append headers that are missing
+    var missingHeaders = ["ShortAnswer1", "ShortAnswer2", "CovenantStatement"];
+    var currentLastCol = sheet.getLastColumn();
+    sheet.getRange(1, currentLastCol + 1, 1, missingHeaders.length).setValues([missingHeaders]);
+    // Refresh headers mapping
+    headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  }
+
   var rowValues = [];
   
   // Set Timestamp first

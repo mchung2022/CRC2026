@@ -1,18 +1,19 @@
-/* js/slides.js - Reveal.js Controller and Navigation Logic */
+/* js/slides.js - Embedded Reveal.js and Comparison Slider Controller */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Reveal.js
+  // Initialize Reveal.js in Embedded Mode
   Reveal.initialize({
+    embedded: true, // Crucial: Runs Reveal inside its container instead of full screen
     controls: true,
-    progress: false, // Hide default progress bar to use custom gradient one
+    progress: false,
     history: true,
-    center: false, // Align content to the top/left for clean readability
-    transition: 'slide', // Slide transition
-    width: 960,
-    height: 700,
-    margin: 0.1,
+    center: true,
+    transition: 'slide',
+    width: 760, // Sized nicely for the split-screen view
+    height: 520,
+    margin: 0.05,
     minScale: 0.2,
-    maxScale: 1.5
+    maxScale: 1.2
   });
 
   const bloomSteps = {
@@ -26,100 +27,165 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const customProgressBar = document.getElementById('custom-progress');
-  const navList = document.getElementById('nav-list');
-  const navPanel = document.getElementById('nav-panel');
-  const navToggle = document.getElementById('nav-panel-toggle');
+  const sidebarList = document.getElementById('sidebar-nav-list');
 
-  // Build the Quick Navigation panel dynamically
+  // Build the Left Sidebar Menu dynamically
   const slides = document.querySelectorAll('.reveal .slides > section');
   slides.forEach((slide, idx) => {
     const slideTitleElement = slide.querySelector('h1, h2');
-    let titleText = slideTitleElement ? slideTitleElement.textContent.trim() : `Slide ${idx + 1}`;
+    let titleText = slideTitleElement ? slideTitleElement.textContent.trim() : `簡報 ${idx + 1}`;
     
-    // Truncate title if too long
-    if (titleText.length > 25) {
-      titleText = titleText.substring(0, 22) + '...';
+    // Remove number prefixes from titles for clean menu look (e.g. 1.1, 2.1)
+    titleText = titleText.replace(/^\d+(\.\d+)?\s+/, '');
+
+    // Truncate menu items if too long
+    if (titleText.length > 18) {
+      titleText = titleText.substring(0, 16) + '...';
     }
 
-    const bloomType = slide.getAttribute('data-bloom') || 'intro';
-
     const navItem = document.createElement('div');
-    navItem.className = `nav-item`;
-    navItem.innerHTML = `<span style="font-weight:700; color:var(--accent-cyan); margin-right:5px;">P${idx + 1}</span> ${titleText}`;
+    navItem.className = 'nav-item';
+    navItem.innerHTML = `<span style="font-weight:700; color:var(--accent-cyan);">P${idx + 1}</span> <span>${titleText}</span>`;
     navItem.setAttribute('data-slide-index', idx);
     
     navItem.addEventListener('click', () => {
       Reveal.slide(idx);
-      navPanel.classList.remove('open');
     });
 
-    navList.appendChild(navItem);
+    sidebarList.appendChild(navItem);
   });
 
-  // Toggle navigation panel
-  navToggle.addEventListener('click', () => {
-    navPanel.classList.toggle('open');
-  });
-
-  // Close nav panel if clicking outside
-  document.addEventListener('click', (e) => {
-    if (!navPanel.contains(e.target) && e.target !== navToggle) {
-      navPanel.classList.remove('open');
-    }
-  });
-
-  // Synchronize top Bloom bar, bottom progress, and active slide in nav list
+  // Synchronize Reveal.js state with indicators
   Reveal.on('slidechanged', event => {
     const currentSlide = event.currentSlide;
     const index = event.indexh;
     const total = Reveal.getTotalSlides();
 
-    // 1. Update Bloom's Taxonomy indicators
+    // 1. Sync Top Bloom Indicators
     const currentBloom = currentSlide.getAttribute('data-bloom') || 'intro';
-    
-    // Reset all
     Object.values(bloomSteps).forEach(step => {
       if (step) step.classList.remove('active');
     });
-
-    // Set active
     if (bloomSteps[currentBloom]) {
       bloomSteps[currentBloom].classList.add('active');
     }
 
-    // 2. Update Custom Progress Bar
+    // 2. Sync Custom Progress Bar
     const percent = total > 1 ? (index / (total - 1)) * 100 : 0;
     customProgressBar.style.width = `${percent}%`;
 
-    // 3. Highlight current item in navigation panel
+    // 3. Sync Left Sidebar Menu active state
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => item.classList.remove('active'));
     
-    const activeNavItem = navItems[index];
-    if (activeNavItem) {
-      activeNavItem.classList.add('active');
-      // Scroll nav panel to active item
-      activeNavItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    const activeItem = navItems[index];
+    if (activeItem) {
+      activeItem.classList.add('active');
+      activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    // 4. Force resize of comparison slider on slide 13 entry (index 12)
+    if (index === 12) {
+      initComparisonSlider();
     }
   });
 
-  // Set initial state
+  // Initial Sync
   setTimeout(() => {
+    const index = Reveal.getIndices().h;
     const initialSlide = Reveal.getCurrentSlide();
     if (initialSlide) {
       const currentBloom = initialSlide.getAttribute('data-bloom') || 'intro';
-      if (bloomSteps[currentBloom]) {
-        bloomSteps[currentBloom].classList.add('active');
-      }
+      if (bloomSteps[currentBloom]) bloomSteps[currentBloom].classList.add('active');
       
       const total = Reveal.getTotalSlides();
-      const percent = total > 1 ? (Reveal.getIndices().h / (total - 1)) * 100 : 0;
+      const percent = total > 1 ? (index / (total - 1)) * 100 : 0;
       customProgressBar.style.width = `${percent}%`;
       
-      const initialNav = document.querySelectorAll('.nav-item')[Reveal.getIndices().h];
-      if (initialNav) initialNav.classList.add('active');
+      const activeNav = document.querySelectorAll('.nav-item')[index];
+      if (activeNav) activeNav.classList.add('active');
+
+      if (index === 12) {
+        initComparisonSlider();
+      }
     }
-  }, 200);
+  }, 300);
+
+  // Comparison Slider Drag Controller
+  let sliderInitialized = false;
+
+  function initComparisonSlider() {
+    if (sliderInitialized) {
+      // Re-align locked panel width to actual container width
+      adjustSliderWidths();
+      return;
+    }
+
+    const container = document.querySelector('.slider-container');
+    const handle = document.getElementById('slider-handle');
+    const afterPanel = document.getElementById('slider-after-panel');
+    const rightContent = document.getElementById('slider-content-right');
+
+    if (!container || !handle || !afterPanel || !rightContent) return;
+
+    adjustSliderWidths();
+    sliderInitialized = true;
+
+    let isDragging = false;
+
+    // Mouse / Touch Event Helpers
+    function move(clientX) {
+      const rect = container.getBoundingClientRect();
+      const x = clientX - rect.left;
+      let percentage = (x / rect.width) * 100;
+
+      // Restrict percentage between 3% and 97% to keep handles visible
+      percentage = Math.max(3, Math.min(97, percentage));
+
+      handle.style.left = `${percentage}%`;
+      afterPanel.style.width = `${percentage}%`;
+    }
+
+    // Mouse down / Touch start
+    function startDragging(e) {
+      isDragging = true;
+      e.preventDefault();
+    }
+
+    // Drag move
+    function drag(e) {
+      if (!isDragging) return;
+      let clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+      move(clientX);
+    }
+
+    // End drag
+    function stopDragging() {
+      isDragging = false;
+    }
+
+    // Event Listeners
+    handle.addEventListener('mousedown', startDragging);
+    handle.addEventListener('touchstart', startDragging, { passive: true });
+
+    window.addEventListener('mousemove', drag);
+    window.addEventListener('touchmove', drag, { passive: true });
+
+    window.addEventListener('mouseup', stopDragging);
+    window.addEventListener('touchend', stopDragging);
+
+    // Auto-adjust on window resize
+    window.addEventListener('resize', adjustSliderWidths);
+  }
+
+  function adjustSliderWidths() {
+    const container = document.querySelector('.slider-container');
+    const rightContent = document.getElementById('slider-content-right');
+    if (container && rightContent) {
+      // Make sure the width of the right content matches the container width exactly
+      rightContent.style.width = `${container.clientWidth}px`;
+    }
+  }
 });
 
 /**

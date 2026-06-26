@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRC 中學學務實踐：50 頁互動簡報 (大二師培生專用)</title>
-  <meta name="description" content="基於 Bloom 認知面向設計的 50 頁兒童權利公約 (CRC) 中學學務實踐簡報，包含探究學習與素養反思。">
+  <meta name="description" content="基於 Bloom 認知面向設計 of 50 頁兒童權利公約 (CRC) 中學學務實踐簡報，包含對比拉桿與左側目錄。">
   
   <!-- Reveal.js CDN CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
@@ -19,766 +19,801 @@
   <div class="bg-glow bg-glow-1"></div>
   <div class="bg-glow bg-glow-2"></div>
 
-  <!-- Bloom's Taxonomy Indicator Bar -->
-  <div class="bloom-indicator-bar" id="bloom-bar">
-    <div class="bloom-step" id="step-intro">🧭 導論</div>
-    <div class="bloom-step" id="step-remember">🟢 記憶 (Remembering)</div>
-    <div class="bloom-step" id="step-understand">🔵 理解 (Understanding)</div>
-    <div class="bloom-step" id="step-apply">🟡 應用 (Applying)</div>
-    <div class="bloom-step" id="step-analyze">🟠 分析 (Analyzing)</div>
-    <div class="bloom-step" id="step-evaluate">🔴 評估 (Evaluating)</div>
-    <div class="bloom-step" id="step-create">🟣 創造 (Creating)</div>
-  </div>
+  <!-- App Layout Grid -->
+  <div class="app-layout">
+    
+    <!-- Left Sidebar: Menu Table of Contents -->
+    <aside class="sidebar glass">
+      <div class="sidebar-header">
+        <h3 style="color: var(--accent-cyan); font-size: 1.2rem; font-weight: 800; margin-bottom: 5px;">📜 簡報目錄</h3>
+        <p style="font-size: 0.75rem; color: var(--text-muted);">50 頁 Bloom 認知導引</p>
+      </div>
+      <div class="sidebar-nav-list" id="sidebar-nav-list">
+        <!-- Generated dynamically in slides.js -->
+      </div>
+    </aside>
 
-  <!-- Custom Progress Bar -->
-  <div class="slides-custom-progress" id="custom-progress"></div>
+    <!-- Main Content Area (Centered) -->
+    <main class="main-content">
+      
+      <!-- Top: Bloom's Taxonomy Indicator Bar -->
+      <div class="bloom-indicator-bar" id="bloom-bar">
+        <div class="bloom-step" id="step-intro">🧭 導論</div>
+        <div class="bloom-step" id="step-remember">🟢 記憶 (Rem)</div>
+        <div class="bloom-step" id="step-understand">🔵 理解 (Und)</div>
+        <div class="bloom-step" id="step-apply">🟡 應用 (App)</div>
+        <div class="bloom-step" id="step-analyze">🟠 分析 (Ana)</div>
+        <div class="bloom-step" id="step-evaluate">🔴 評估 (Eva)</div>
+        <div class="bloom-step" id="step-create">🟣 創造 (Cre)</div>
+      </div>
 
-  <!-- Reveal.js Slide Wrapper -->
-  <div class="reveal">
-    <div class="slides">
+      <!-- Center: Reveal.js Presentation (Embedded Mode) -->
+      <div class="reveal-container">
+        <div class="reveal">
+          <div class="slides">
 
-      <!-- P1: 封面 -->
-      <section class="center-slide" data-bloom="intro">
-        <h1>CRC 中學學務實踐</h1>
-        <h3 style="color: var(--accent-cyan) !important;">大二師培生的第一堂人權課</h3>
-        <p style="margin-top: 40px; font-size: 1.1rem; color: var(--text-secondary);">
-          做一個「有法治素養」且「溫暖守護權利」的未來教師
-        </p>
-        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">
-          使用鍵盤 <b>&rarr;</b> 或 <b>Space</b> 鍵翻頁 ｜ 點擊右下角按鈕開啟快速導覽
-        </p>
-      </section>
+            <!-- P1: 封面 -->
+            <section class="center-slide" data-bloom="intro">
+              <h1>CRC 中學學務實踐</h1>
+              <h3 style="color: var(--accent-cyan) !important;">大二師培生的第一堂人權課</h3>
+              <p style="margin-top: 30px; font-size: 1.1rem; color: var(--text-secondary);">
+                做一個「有法治素養」且「溫慢守護權利」的未來教師
+              </p>
+              <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">
+                點選左側目錄可自由跳轉，按鍵盤 <b>&rarr;</b> 或 <b>Space</b> 可前進
+              </p>
+            </section>
 
-      <!-- P2: 課程引導 -->
-      <section data-bloom="intro">
-        <h2>課程引導：從「管理」到「權利保障」</h2>
-        <div class="slide-content-full">
-          <p>在中學校園中，我們常聽到：</p>
-          <div class="reflect-box">
-            <p>「我不管你，班上怎麼維持秩序？」、「學生還沒成年，憑什麼要求那麼多權利？」</p>
+            <!-- P2: 課程引導 -->
+            <section data-bloom="intro">
+              <h2>課程引導：從「管理」到「權利保障」</h2>
+              <div class="slide-content-full">
+                <p>在中學校園中，我們常聽到：</p>
+                <div class="reflect-box">
+                  <p>「我不管你，班上怎麼維持秩序？」、「學生還沒成年，憑什麼要求那麼多權利？」</p>
+                </div>
+                <p style="margin-top: 15px;">本課程專為<b>大二師培生</b>設計，旨在幫助大家從傳統的「威權控制者」轉變為「人權保障的教育者」。透過 50 頁的 Bloom 認知引導，我們將系統性探索如何在中學實踐《兒童權利公約 (CRC)》。</p>
+              </div>
+            </section>
+
+            <!-- P3: 課前探究 -->
+            <section data-bloom="intro">
+              <h2>課前探究：中學現場的管教迷思</h2>
+              <div class="slide-content-grid">
+                <div>
+                  <div class="inquiry-box">
+                    <h4>❓ 探究思考</h4>
+                    <p>當班上學生集體抗議「學校禁止天冷時加穿校外大衣」，身為實習導師的你，第一個直覺反應是什麼？</p>
+                  </div>
+                  <ul style="font-size: 0.85rem !important;">
+                    <li>A. 「校規既然規定了就要遵守，集體抗議是不尊重體制。」</li>
+                    <li>B. 「學生會冷是事實，但應該透過正常申訴管道，不該鼓譟。」</li>
+                    <li>C. 「這涉及學生身體自主與健康權，校規可能違憲或違反 CRC。」</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="reflect-box">
+                    <h4>✍️ 輸入您的反思</h4>
+                    <textarea id="ref-p3" class="form-input" style="height: 100px; resize: none;" placeholder="請輸入您的看法..."></textarea>
+                    <button class="btn btn-primary" onclick="submitReflection(3, '課前探究', 'ref-p3')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出反思</button>
+                    <div id="status-p3" class="status-message"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- P4: 模組一 記憶 (Remembering) - 導航 -->
+            <section class="center-slide" data-bloom="remember">
+              <span class="badge badge-remember">Level 1: Remembering</span>
+              <h2 style="margin-top: 20px;">模組一：記憶 (Remembering)</h2>
+              <h3 style="color: #fff !important;">CRC 核心概念與國內法化</h3>
+              <p style="max-width: 600px; margin-top: 20px;">
+                本模組重點：認識並記憶 CRC 的起源、定義、四大基本原則，以及台灣如何透過國內法化落實校園法治。
+              </p>
+            </section>
+
+            <!-- P5: CRC的起源 -->
+            <section data-bloom="remember">
+              <h2>1.1 兒童權利公約 (CRC) 的起源</h2>
+              <div class="slide-content-full">
+                <p>聯合國於 <b>1989 年 11 月 20 日</b> 通過《兒童權利公約》(Convention on the Rights of the Child, CRC)。</p>
+                <div class="tip-box">
+                  <h4>💡 歷史記憶點</h4>
+                  <ul>
+                    <li><b>世界上獲得最廣泛批准的人權條約</b>（全球僅極少數國家未批准）。</li>
+                    <li>歷史意義：將兒童視為<b>「權利的主體」</b>，而非單純受保護的客體、家長的私有財產或國家的附屬物。</li>
+                    <li>中學生在法律上與生理上皆處於此公約的完整保護與規範範圍內。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- P6: 兒童的定義 -->
+            <section data-bloom="remember">
+              <h2>1.2 誰是「兒童」？中學生算嗎？</h2>
+              <div class="slide-content-full">
+                <div class="inquiry-box">
+                  <h4>❓ 法規定義</h4>
+                  <p>根據 CRC 第 1 條：「兒童係指<b>未滿 18 歲</b>之人，除非對其適用之法律規定成年年齡低於 18 歲。」</p>
+                </div>
+                <ul>
+                  <li><b>中學生（國中生、高中生）</b>均屬於 CRC 定義的「兒童」。</li>
+                  <li>因此，師培生未來面對的中學班級，全班都是公約保障的權利主體。</li>
+                  <li>不可因中學生已具備部分自主能力，而剝奪其作為兒童應享有的特殊保護與權利。</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- P7: 四大基本原則 -->
+            <section data-bloom="remember">
+              <h2>1.3 CRC 四大核心原則</h2>
+              <div class="slide-content-full">
+                <p>CRC 擁有四個貫穿所有條文的靈魂原則，必須熟記並應用於學務管理：</p>
+                <div class="slide-content-grid" style="margin-top: 10px;">
+                  <div class="glass" style="padding: 15px;">
+                    <span class="badge badge-remember">一、禁止歧視</span>
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-secondary);">不因兒童或家長之種族、性別、語言、宗教、身心障礙或成績而有差別對待。</p>
+                  </div>
+                  <div class="glass" style="padding: 15px;">
+                    <span class="badge badge-remember">二、兒童最佳利益</span>
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-secondary);">所有涉及兒童之事務，應以兒童之最佳利益為首要考量。</p>
+                  </div>
+                </div>
+                <div class="slide-content-grid" style="margin-top: 10px;">
+                  <div class="glass" style="padding: 15px;">
+                    <span class="badge badge-remember">三、生存及發展權</span>
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-secondary);">確保兒童生存，並促進其身心、心智、道德及社會性之健全發展。</p>
+                  </div>
+                  <div class="glass" style="padding: 15px;">
+                    <span class="badge badge-remember">四、尊重兒童意見</span>
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-secondary);">有表達意見權利，並應依其年齡及成熟度予以適當看待（表意權）。</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- P8: 禁止歧視原則 -->
+            <section data-bloom="remember">
+              <h2>1.4 核心原則一：禁止歧視 (Art. 2)</h2>
+              <div class="slide-content-full">
+                <p>國家及學校應採取一切適當措施，確保兒童不因其身份、行為或發表之言論而遭受歧視。</p>
+                <div class="tip-box">
+                  <h4>💡 中學校園記憶點</h4>
+                  <p>常見違規樣態：<b>後段班學生被限制使用圖書館、記過學生被禁止參加校外教學</b>。這些做法直接違反了「禁止歧視原則」與「受教權平等原則」。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P9: 兒童最佳利益 -->
+            <section data-bloom="remember">
+              <h2>1.5 核心原則二：兒童最佳利益 (Art. 3)</h2>
+              <div class="slide-content-full">
+                <p>所有涉及兒童之事務，行政機關、司法機關、立法機關或<b>社會福利機構（包括學校）</b>，均應以兒童最佳利益為首要考量。</p>
+                <ul>
+                  <li>當學校政策（如提早半小時上學以利管理）與學生健康發展衝突時，應以「學生的最佳利益」為優先，而非「行政管理之便利」。</li>
+                  <li>「最佳利益」非大人主觀認定，必須包含聆聽學生的聲音。</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- P10: 生存及發展權 -->
+            <section data-bloom="remember">
+              <h2>1.6 核心原則三：生存及發展權 (Art. 6)</h2>
+              <div class="slide-content-full">
+                <p>締約國應盡最大可能確保兒童之生存與發展。</p>
+                <div class="tip-box">
+                  <h4>💡 發展權的延伸</h4>
+                  <p>「發展」不只活著，還包括生理、心理、精神、道德和社會性的發展。中學嚴格限制社團活動、體育課挪用為學科考試，皆可能侵害學生的完整「發展權」。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P11: 尊重兒童意見 -->
+            <section data-bloom="remember">
+              <h2>1.7 核心原則四：尊重兒童意見 (Art. 12)</h2>
+              <div class="slide-content-full">
+                <p>對有能力形成自己意見之兒童，應確保其有權對影響其本人之一切事務自由發表意見。發表之意見應依兒童之年齡及成熟度予以適當對待。</p>
+                <ul>
+                  <li>中學階段學生的成熟度已極高，學校制定班規、校規或決定作息時間時，應提供合適管道讓學生發言、討論並參與決策。</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- P12: 模組二 理解 (Understanding) - 導航 -->
+            <section class="center-slide" data-bloom="understand">
+              <span class="badge badge-understand">Level 2: Understanding</span>
+              <h2 style="margin-top: 20px;">模組二：理解 (Understanding)</h2>
+              <h3 style="color: #fff !important;">權利主體與管教邊界</h3>
+              <p style="max-width: 600px; margin-top: 20px;">
+                本模組重點：深入理解 CRC 與台灣法律位階的對應、體會「保護」與「自主」的拉鋸，並釐清教師輔導管教權的法定限度。
+              </p>
+            </section>
+
+            <!-- P13: 對比拉桿 (核心對比：無 CRC vs. 有 CRC) -->
+            <section data-bloom="understand">
+              <h2 style="font-size: 1.8rem !important; margin-bottom: 10px !important;">2.1 歷史變革：無 CRC 與 有 CRC 的校園對照</h2>
+              <p style="font-size: 0.85rem !important; margin-bottom: 10px; color: var(--text-muted);">左右拖曳中間的拉桿，對比傳統威權管理與落實 CRC 精神的校園實務差異：</p>
+              
+              <!-- Interactive Split-Screen Slider Component -->
+              <div class="slider-container">
+                <!-- Underneath / Background (Before CRC) -->
+                <div class="slider-panel before-panel">
+                  <div class="slider-panel-content">
+                    <div style="font-size: 2.5rem; margin-bottom: 5px;">⛓️ 傳統威權校園 (沒有 CRC)</div>
+                    <ul style="font-size: 0.8rem !important; color: #ff8787 !important;">
+                      <li><b>管教客體</b>：學生是受支配者，必須無條件服從師長，沒有討論空間。</li>
+                      <li><b>無端安全檢查</b>：教官可隨意以「抽查」名義翻箱倒櫃搜查書包，無視個人隱私。</li>
+                      <li><b>嚴厲懲罰</b>：遲到即罰站、抄課文、強制留校自習，以恐懼維持班級秩序。</li>
+                      <li><b>服儀強制規定</b>：嚴格限制髮式、染髮，嚴冬時仍強迫校服必須穿在最外側。</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <!-- Overlay / Revealing (With CRC) -->
+                <div class="slider-panel after-panel" id="slider-after-panel">
+                  <div class="slider-panel-content" id="slider-content-right">
+                    <div style="font-size: 2.5rem; margin-bottom: 5px; color: var(--accent-cyan);">🕊️ 現代人權校園 (有 CRC 落實)</div>
+                    <ul style="font-size: 0.8rem !important; color: #e0f2fe !important;">
+                      <li><b>權利主體</b>：學生是獨立個體，學校決策應優先保障其最大利益與發展。</li>
+                      <li><b>隱私保障</b>：非有合理懷疑與法定程序，不得隨意搜查書包；輔導紀錄絕對保密。</li>
+                      <li><b>民主共創與協商</b>：班規與手機保管契約由親師生三方協商制定，以契約精神代替強迫。</li>
+                      <li><b>多元包容服儀</b>：尊重學生身體自主，不因服儀問題懲處學生，天冷允許自由添加外衣。</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <!-- Draggable Handle -->
+                <div class="slider-handle" id="slider-handle">
+                  <div class="slider-handle-line"></div>
+                  <div class="slider-handle-button">&harr;</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- P14: 台灣兒童權利公約施行法 -->
+            <section data-bloom="understand">
+              <h2>2.2 國內法化：《中華民國公約施行法》</h2>
+              <div class="slide-content-full">
+                <p>台灣於 <b>2014 年</b> 通過《兒童權利公約施行法》，正式將 CRC 納入國內法律體系。</p>
+                <div class="inquiry-box">
+                  <h4>📜 施行法第 2 條</h4>
+                  <p>「公約所列保護及促進兒童及少年權利之規定，<b>具有國內法律之效力</b>。」</p>
+                </div>
+                <p>這意味著：任何中學的校規、班規或懲處辦法，若與 CRC 條文牴觸，在法理上均屬<b>無效</b>。學校不可用「大學自治」或「校園自主管理」為由規避 CRC 的規範。</p>
+              </div>
+            </section>
+
+            <!-- P15: 台灣學校規章與CRC位階 -->
+            <section data-bloom="understand">
+              <h2>2.3 法律位階圖解</h2>
+              <div class="slide-content-full">
+                <p>請理解以下法規位階關係，這將決定你在中學現場所做行政決策的合法性：</p>
+                <div class="reflect-box" style="line-height: 1.6; font-size: 0.85rem !important;">
+                  <p>🥇 <b>憲法 / 國際公約 (CRC) 及施行法</b> (效力最高)</p>
+                  <p>🥈 <b>教育法律</b> (教育基本法、教師法、國民教育法)</p>
+                  <p>🥉 <b>行政法規/命令</b> (學校學生輔導管教辦法注意事項)</p>
+                  <p>❌ <b>學校校規 / 班級公約</b> (最底層，絕對不可牴觸上方所有法規)</p>
+                </div>
+                <p style="font-size: 0.85rem !important; margin-top: 10px;">許多學校的「沒收手機」、「記過不准申訴」校規，因違反憲法與 CRC 的比例原則及訴訟權，在法律上是禁不起挑戰的。</p>
+              </div>
+            </section>
+
+            <!-- P16: 理解表意權：非「為所欲為」 -->
+            <section data-bloom="understand">
+              <h2>2.4 理解表意權：非「為所欲為」</h2>
+              <div class="slide-content-full">
+                <p>許多老師抗拒 CRC，是誤以為表意權代表「學生要怎樣就怎樣」。</p>
+                <div class="tip-box">
+                  <h4>💡 正確理解</h4>
+                  <ul>
+                    <li><b>表意權是「程序性權利」</b>：確保學生的意見有被傾聽、記錄並列入考量的機會。</li>
+                    <li><b>非「決定性權利」</b>：最終決策仍應綜合專業評估。但若學校完全沒有聽取學生代表意見就逕行公告新規，即違反了 CRC。</li>
+                    <li>成熟度評估：年齡越大，其表意所占的決策權重應隨之提高。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- P17: 兒童最佳利益評估指標 -->
+            <section data-bloom="understand">
+              <h2>2.5 「最佳利益」的評估架構</h2>
+              <div class="slide-content-full">
+                <p>當面臨導師決策兩難時，如何判定何為「兒童最佳利益」？應從以下維度綜合評估：</p>
+                <ul>
+                  <li><b>兒童的看法</b>：該名學生的真實意願是什麼？</li>
+                  <li><b>兒童的身份與特徵</b>：考量其家庭背景、特教狀態或文化背景。</li>
+                  <li><b>兒童的安全與健康</b>：該決策是否危及學生身心安全？</li>
+                  <li><b>學習權的連續性</b>：該決策是否會導致學生中斷學習（如停課、禁足）？</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- P18: 教師管教權的法定邊界 -->
+            <section data-bloom="understand">
+              <h2>2.6 教師輔導管教權的實質邊界</h2>
+              <div class="slide-content-full">
+                <p>根據教育部《學校訂定教師輔導與管教學生辦法注意事項》：</p>
+                <div class="inquiry-box">
+                  <p>教師管教應基於教育目的，遵守<b>比例原則</b>、<b>人權保障</b>與<b>正當法律程序</b>。禁止實施體罰、誹謗或身心虐待。</p>
+                </div>
+                <p>傳統上的「株連處分（全班罰站）」、「沒收私人財產不還」均已明確超出法律授予教師的合理管教權範圍，在人權與法律層面皆屬侵權行為。</p>
+              </div>
+            </section>
+
+            <!-- P19: 探究任務：威權 vs. 人權 -->
+            <section data-bloom="understand">
+              <h2>2.7 理解篇探究：威權與人權的界線</h2>
+              <div class="slide-content-grid">
+                <div>
+                  <div class="inquiry-box">
+                    <h4>❓ 衝突情境</h4>
+                    <p>某校教官為了抓抽菸的學生，在午休時間無預警進入班級，要求所有學生把書包打開翻找。此行為合法嗎？為什麼？</p>
+                  </div>
+                </div>
+                <div>
+                  <div class="reflect-box">
+                    <h4>✍️ 輸入您的分析</h4>
+                    <textarea id="ref-p19" class="form-input" style="height: 100px; resize: none;" placeholder="請從法律位階或CRC原則進行分析..."></textarea>
+                    <button class="btn btn-primary" onclick="submitReflection(19, '威權與人權的界線', 'ref-p19')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出分析</button>
+                    <div id="status-p19" class="status-message"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- P20: 模組二自我檢核 -->
+            <section class="center-slide" data-bloom="understand">
+              <h2>模組二自我檢核 (Check Point)</h2>
+              <div class="glass" style="padding: 20px; max-width: 700px; text-align: left; margin: 0 auto;">
+                <p>🟩 <b>我能說出 CRC 在台灣國內法化的具體法律名稱。</b></p>
+                <p>🟩 <b>我能解釋為何校規的效力低於國際人權公約。</b></p>
+                <p>🟩 <b>我理解「兒童最佳利益」並非由教師單方面主觀認定。</b></p>
+              </div>
+            </section>
+
+            <!-- P21: 模組三 應用 (Applying) - 導航 -->
+            <section class="center-slide" data-bloom="apply">
+              <span class="badge badge-apply">Level 3: Applying</span>
+              <h2 style="margin-top: 20px;">模組三：應用 (Applying)</h2>
+              <h3 style="color: #fff !important;">校園生活規約實務</h3>
+              <p style="max-width: 600px; margin-top: 20px;">
+                本模組重點：將 CRC 原則應用於中學常見學務爭議：服裝儀容、手機管制、書包搜查以及學生會議代表權的實務落實。
+              </p>
+            </section>
+
+            <!-- P22: 服儀規範歷史與現狀 -->
+            <section data-bloom="apply">
+              <h2>3.1 服裝儀容規範的法律變革</h2>
+              <div class="slide-content-full">
+                <p>教育部已明確發文禁止學校因「服裝儀容問題」處分學生（記警告、記過）。</p>
+                <div class="tip-box">
+                  <h4>💡 現行教育部政策</h4>
+                  <ul>
+                    <li>學校應設有「服裝儀容委員會」，且必須有<b>學生代表</b>參與決策。</li>
+                    <li>學校<b>不得</b>限制學生髮式（長短、染燙）。</li>
+                    <li>除特定安全與識別需求外，學校應開放學生自由搭配校服、班服或體育服，並在低溫時允許自由加穿校外禦寒大衣。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- P23: 服儀爭議實務應用 -->
+            <section data-bloom="apply">
+              <h2>3.2 實務應用：面對冷天穿校外外套</h2>
+              <div class="slide-content-full">
+                <p><b>案例</b>：寒流來襲，小明因為外套不夠保暖，在外套內加了件亮紅色的個人連帽衛衣，露出帽子。值週教官以「服儀不整」要求小明脫掉。此時身為導師的你該如何處理？</p>
+                <div class="reflect-box" style="font-size: 0.85rem !important;">
+                  <h4>🚀 專業教師的 CRC 行動方案</h4>
+                  <p>1. <b>即時保護</b>：以學生保暖與健康權為優先，向教官說明並保留其穿著。</p>
+                  <p>2. <b>法規溝通</b>：提醒教官教育部規定「低溫特報時學生得自由添加校外防寒衣物」，此處分已違法。</p>
+                  <p>3. <b>校規檢修</b>：於校務會議提案，修正學校過時的服儀裁罰標準。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P24: 手機使用規範與隱私 -->
+            <section data-bloom="apply">
+              <h2>3.3 智慧型手機的禁用與規範</h2>
+              <div class="slide-content-full">
+                <p>手機涉及學生的<b>資訊近用權</b>與<b>個人隱私權</b>，但同時也影響教學秩序。如何合理應用？</p>
+                <div class="inquiry-box">
+                  <h4>⚖️ 比例原則之應用</h4>
+                  <ul>
+                    <li><b>上課期間</b>：為維護他人受教權，學校可規定集中保管或限制使用。</li>
+                    <li><b>下課與放學時間</b>：屬於學生的私人時間，除涉及騷擾或霸凌外，學校<b>無權</b>禁止其合理通訊與娛樂。</li>
+                    <li><b>嚴禁</b>：教師私自解鎖學生手機查看聊天紀錄或相簿（違反刑法妨害秘密罪與 CRC 隱私權）。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- P25: 手機暫時保管的局限 -->
+            <section data-bloom="apply">
+              <h2>3.4 手機「暫時保管」的法律限制</h2>
+              <div class="slide-content-full">
+                <p>很多老師習慣「沒收手機一星期」或「叫家長來拿才還」。這在法律上屬於侵占與侵害財產權。</p>
+                <div class="tip-box">
+                  <h4>💡 正確處置流程</h4>
+                  <p>上課玩手機時，教師可暫時保管，但<b>必須於當日放學前歸還學生</b>。若需由家長領回，必須有校規明文規定且家長同意，且不可無限期扣留。保管期間學校負有保管責任，若損壞需負賠償責任。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P26: 安全檢查與書包搜查 -->
+            <section data-bloom="apply">
+              <h2>3.5 安全檢查的實務應用 (Locker Searches)</h2>
+              <div class="slide-content-full">
+                <p>搜查學生書包或置物櫃，是侵害人身與財產隱私權的極端行政行為。非有必要，不得為之。</p>
+                <div class="inquiry-box">
+                  <h4>⚠️ 法定要件（必須同時滿足）</h4>
+                  <p>1. <b>合理懷疑</b>：有具體事證顯示特定學生攜帶違禁品（如刀械、毒品）。不可因「全班成績退步」或「為了預防」進行普查。</p>
+                  <p>2. <b>程序正義</b>：搜查時需有家長代表或學生代表在場，且必須**全程錄影**記錄備查。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P27: 安全檢查程序檢核表 -->
+            <section data-bloom="apply">
+              <h2>3.6 搜查書包標準流程 (SOP)</h2>
+              <div class="slide-content-full">
+                <p>若學校確有必要進行安全檢查，請應用以下法定流程，避免未來捲入法律訴訟：</p>
+                <div class="reflect-box" style="font-size: 0.85rem !important;">
+                  <p>📌 <b>步驟 1</b>：接獲具體線報（例如：看見學生包包有刀柄）。</p>
+                  <p>📌 <b>步驟 2</b>：通報學務處，由學務人員陪同，並通知家長代表或學生自治幹部到場。</p>
+                  <p>📌 <b>步驟 3</b>：於監視器下或安排錄影，由學生自己打開包包，教師進行檢視。</p>
+                  <p>📌 <b>步驟 4</b>：若發現違禁品，依法沒入並填寫保管收據，通報相關單位。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P28: 學生自治與社團參與 -->
+            <section data-bloom="apply">
+              <h2>3.7 學生自治與社團權益的應用</h2>
+              <div class="slide-content-full">
+                <p>CRC 第 15 條保障兒童之<b>結社與和平集會自由</b>。</p>
+                <ul>
+                  <li>中學不得無故限制學生創辦社團的權利，或以「課業退步」為由強制解散學生社團。</li>
+                  <li>學生自治會（學生會）選舉應由學生自主運作，師長應扮演「輔導與諮詢」角色，而非「審查與篩選候選人」的控制者。</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- P29: 學生代表參與校務決策 -->
+            <section data-bloom="apply">
+              <h2>3.8 學生代表在校務會議的角色</h2>
+              <div class="slide-content-full">
+                <p>依據高級中等教育法，校務會議必須有**學生代表**列席，且比例應符合法令規範。</p>
+                <div class="tip-box">
+                  <h4>💡 師培生未來應用指南</h4>
+                  <p>在會議中，當看見行政主管以「小孩子不懂事」杯葛學生提案時，師培生應主動聲援學生，協助其將提案以成熟的文字呈現，促成真正的親師生共治。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P30: 應用篇實務思考 -->
+            <section data-bloom="apply">
+              <h2>3.9 應用篇思考：制定手機保管公約</h2>
+              <div class="slide-content-grid">
+                <div>
+                  <div class="inquiry-box">
+                    <h4>❓ 任務情境</h4>
+                    <p>班級會議上，學生提案「希望中午吃飯時可以自由看手機配飯」。身為導師，你如何應用 CRC 表意權與合理限制，跟學生達成雙贏的班級手機公約？</p>
+                  </div>
+                </div>
+                <div>
+                  <div class="reflect-box">
+                    <h4>✍️ 輸入您的雙贏方案</h4>
+                    <textarea id="ref-p30" class="form-input" style="height: 100px; resize: none;" placeholder="請輸入您預期與學生協商的公約草案..."></textarea>
+                    <button class="btn btn-primary" onclick="submitReflection(30, '手機保管公約', 'ref-p30')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出方案</button>
+                    <div id="status-p30" class="status-message"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- P31: 模組四 分析 (Analyzing) - 導航 -->
+            <section class="center-slide" data-bloom="analyze">
+              <span class="badge badge-analyze">Level 4: Analyzing</span>
+              <h2 style="margin-top: 20px;">模組四：分析 (Analyzing)</h2>
+              <h3 style="color: #fff !important;">校園衝突與權利解構</h3>
+              <p style="max-width: 600px; margin-top: 20px;">
+                本模組重點：學會解構中學日常衝突背後的權利衝突（如：集體秩序 vs. 個人隱私；管教權 vs. 言論自由），分析結構性壓迫。
+              </p>
+            </section>
+
+            <!-- P32: 集體秩序與個人隱私衝突 -->
+            <section data-bloom="analyze">
+              <h2>4.1 解析衝突：集體秩序 vs. 個人隱私</h2>
+              <div class="slide-content-full">
+                <p>中學管理最常見的衝突核心：<b>「為了全體的安全，能否侵害個人的隱私？」</b></p>
+                <div class="slide-content-grid" style="margin-top: 15px;">
+                  <div class="glass" style="padding: 15px;">
+                    <h4 style="color: var(--accent-cyan);">📁 學校管理立場</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">「如果不能隨時抽查抽屜，學生帶違禁品、色情漫畫甚至管制藥物怎麼辦？這會危害整體秩序！」</p>
+                  </div>
+                  <div class="glass" style="padding: 15px;">
+                    <h4 style="color: var(--accent-pink);">👤 CRC 人權立場</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">「抽屜是個人空間的延伸。無差別的抽查破壞了師生互信，且對無辜學生構成隱私侵害，違反侵害最小原則。」</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- P33: 言論自由與校園秩序 -->
+            <section data-bloom="analyze">
+              <h2>4.2 解構衝突：言論自由 vs. 教師尊嚴</h2>
+              <div class="slide-content-full">
+                <p><b>案例</b>：學生在 Threads 發文抱怨：「我們班導超爛，上課無聊又愛挑毛病，根本是法西斯。」</p>
+                <div class="tip-box">
+                  <h4>🔍 結構性分析</h4>
+                  <ul>
+                    <li><b>言論自由的保障</b>：學生有權批評公共事務（教師教學屬於校園公共事務）。</li>
+                    <li><b>真實惡意與侮辱的界線</b>：若無謾罵髒話或捏造誹謗事實，單純的「主觀抱怨」受言論自由保障。</li>
+                    <li><b>導師的專業回應</b>：若以「不敬師長」記過，在法理上必被撤銷。導師應分析抱怨背後的真實需求，並以專業教學溝通解決。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- P34: 霸凌事件中的CRC人權分析 -->
+            <section data-bloom="analyze">
+              <h2>4.3 霸凌處理中的人權分析</h2>
+              <div class="slide-content-full">
+                <p>當班上發生霸凌，傳統手段是「記大過、強制轉班」，但這常導致被霸凌者與霸凌者皆受創。從 CRC 角度分析：</p>
+                <ul>
+                  <li><b>霸凌者亦是發展中的兒童</b>：其偏差行為背後常有家庭功能失調或心理障礙，同樣享有發展權與受教權。</li>
+                  <li><b>修復式正義 (Restorative Justice)</b>：修復關係、重建安全感，而非單純的行政懲罰。</li>
+                  <li><b>保護被害者</b>：確保其受教權不因調查程序再次受損。</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- P35: 輔導紀錄隱私權爭議 -->
+            <section data-bloom="analyze">
+              <h2>4.4 學生隱私權：輔導紀錄可以給家長看嗎？</h2>
+              <div class="slide-content-full">
+                <p><b>衝突點</b>：家長認為自己是監護人，有權知道孩子在輔導室說的一切；學生則要求輔導老師保密。</p>
+                <div class="inquiry-box">
+                  <h4>💡 CRC 最佳利益衡平法</h4>
+                  <p>輔導紀錄屬於高敏感個人隱私。若學生表示「讓父母知道會導致家庭暴力或關係決裂」，基於<b>兒童最佳利益</b>與<b>隱私權</b>，輔導教師應婉拒直接提供，改由轉譯方式向家長說明孩子的核心需求，而非無條件讓步給監護權。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P36: 罰站與反省時間的本質分析 -->
+            <section data-bloom="analyze">
+              <h2>4.5 處分手段分析：罰站與反省時間</h2>
+              <div class="slide-content-full">
+                <p>教育部規定：教師得採取「罰站（每次不超過一堂課，每日累計不超過兩小時）」或「要求反省」。</p>
+                <div class="reflect-box">
+                  <h4>⚠️ 質性分析：合理管教 vs. 身體折磨</h4>
+                  <ul>
+                    <li><b>罰站的空間</b>：必須在教室內或走廊有師長照看處，嚴禁在太陽下曝曬或大雨中進行（此屬虐待）。</li>
+                    <li><b>反省的目的</b>：是為了冷靜與思考，不可伴隨抄寫不合理數量的課文（變相體罰）。</li>
+                    <li><b>身心評估</b>：若學生身體不適或領有特教手冊，不可實施罰站。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- P37: 學校權力不對等分析 -->
+            <section data-bloom="analyze">
+              <h2>4.6 中學校園的結構性權力分析</h2>
+              <div class="slide-content-full">
+                <p>師培生需看清校園的權力結構：</p>
+                <div class="slide-content-grid">
+                  <div class="glass" style="padding: 15px;">
+                    <h4 style="color: var(--accent-cyan);">教師端 ⚙️</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">掌握打分數、記過提報、日常控管的生殺大權，易流於主觀與威權管理。</p>
+                  </div>
+                  <div class="glass" style="padding: 15px;">
+                    <h4 style="color: var(--accent-pink);">學生端 👥</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">多數政策只能被動接受，申訴程序複雜且易遭貼標籤，處於絕對弱勢。</p>
+                  </div>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.85rem !important;"><b>教師素養</b>：意識到自身的權力優勢，並主動約束權力的過度膨脹，是實踐 CRC 的起點。</p>
+              </div>
+            </section>
+
+            <!-- P38: 分析篇探究思考 -->
+            <section data-bloom="analyze">
+              <h2>4.7 分析篇探究：解構不合理校規</h2>
+              <div class="slide-content-grid">
+                <div>
+                  <div class="inquiry-box">
+                    <h4>❓ 案例分析</h4>
+                    <p>某高中校規：「攜帶手機未關機者，記小過一次，並扣押手機至學期末。」請分析此校規侵害了學生在 CRC 與我國法律上的哪些權益？</p>
+                  </div>
+                </div>
+                <div>
+                  <div class="reflect-box">
+                    <h4>✍️ 輸入您的結構分析</h4>
+                    <textarea id="ref-p38" class="form-input" style="height: 100px; resize: none;" placeholder="請列出被侵害的權利與法理缺陷..."></textarea>
+                    <button class="btn btn-primary" onclick="submitReflection(38, '解構不合理校規', 'ref-p38')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出分析</button>
+                    <div id="status-p38" class="status-message"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- P39: 模組五 評估 (Evaluating) - 導航 -->
+            <section class="center-slide" data-bloom="evaluate">
+              <span class="badge badge-evaluate">Level 5: Evaluating</span>
+              <h2 style="margin-top: 20px;">模組五：評估 (Evaluating)</h2>
+              <h3 style="color: #fff !important;">現行學務規章大體檢</h3>
+              <p style="max-width: 600px; margin-top: 20px;">
+                本模組重點：培力批判性思考，評估學校現行管教手段（愛校服務、警告記過）的效能與合法性，並進行自我管理風格評估。
+              </p>
+            </section>
+
+            <!-- P40: 評估愛校服務 -->
+            <section data-bloom="evaluate">
+              <h2>5.1 評估「愛校服務」的教育本質</h2>
+              <div class="slide-content-full">
+                <p>許多學校以「愛校服務（銷過）」做為替代懲罰。我們來評估其價值：</p>
+                <div class="tip-box">
+                  <h4>⚖️ 評估矩陣</h4>
+                  <ul>
+                    <li><b>正面效益</b>：提供學生彌補過錯、透過勞動進行自我反省與社區服務的機會。</li>
+                    <li><b>負面扭曲</b>：若服務內容流於「幫老師跑腿買午餐」、「無保護裝備掃化糞池」，則推卸勞役懲罰，侵害兒童尊嚴，違反 CRC 第 32 條（免受經濟剝削或有害勞動）。</li>
+                    <li><b>改善方向</b>：愛校服務內容應與其犯錯行為具有教育上的關聯性。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- P41: 評估記過警告制度 -->
+            <section data-bloom="evaluate">
+              <h2>5.2 評估「記過警告制度」的實效</h2>
+              <div class="slide-content-full">
+                <p>傳統記過（警告、小過、大過）在輔導管教上的有效性與人權衝擊評估：</p>
+                <div class="reflect-box">
+                  <p>🚫 <b>易遭貼標籤</b>：一旦被記過，學生容易產生「破罐子破摔」的消極心理，加劇校園邊緣化。</p>
+                  <p>🚫 <b>忽略根本問題</b>：記過是快速的行政手段，卻無法解決學生遲到、曠課背後的家庭失能或心理憂鬱問題。</p>
+                  <p>✅ <b>CRC 建議</b>：建立「輔導優先於懲處」機制，限制單純以記過代替輔導的行政懶惰行為。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P42: 評估學校獎懲的隱性歧視 -->
+            <section data-bloom="evaluate">
+              <h2>5.3 獎勵機制的隱性歧視評估</h2>
+              <div class="slide-content-full">
+                <p><b>思辨</b>：「期末考前三名的學生可以獲得與校長共進下午茶的獎勵，後段班學生則需要留校自習。」</p>
+                <ul>
+                  <li>這看似是激勵，但在評估上，這是否構成對成績落後學生的隱性差別對待與歧視？</li>
+                  <li>CRC 要求保障所有學生的休閒權與遊戲權（第 31 條），留校自習是否過度限縮了部分學生的自由？</li>
+                  <li>我們應該如何重新設計能包容多元智能的獎勵機制？</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- P43: 批判傳統乖學生指標 -->
+            <section data-bloom="evaluate">
+              <h2>5.4 批判性審視傳統「乖學生」指標</h2>
+              <div class="slide-content-full">
+                <p>傳統中學評估好學生的標準：「聽話、不問問題、配合度高、成績優異」。</p>
+                <div class="inquiry-box">
+                  <h4>💡 從 CRC 重新評估</h4>
+                  <p>這些指標實質上是壓抑了學生的<b>表意權</b>與<b>獨立人格發展</b>。未來教師應鼓勵學生提問、質疑不合理的常規，並視其為「具備民主素養與思辨能力」的健康表現，而非「難管教的刺頭」。</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P44: 評估篇自我覺察任務 -->
+            <section data-bloom="evaluate">
+              <h2>5.5 評估篇自我覺察：你的管教風格</h2>
+              <div class="slide-content-grid">
+                <div>
+                  <div class="inquiry-box">
+                    <h4>❓ 自我評估</h4>
+                    <p>你會為了追求「整齊劃一的班級秩序」而適度犧牲學生的「個人表意與隱私權」嗎？請誠實評估你的教育信念與管理權衡。</p>
+                  </div>
+                </div>
+                <div>
+                  <div class="reflect-box">
+                    <h4>✍️ 輸入您的覺察反思</h4>
+                    <textarea id="ref-p44" class="form-input" style="height: 100px; resize: none;" placeholder="請寫下你對管理與權利權衡的真實看法..."></textarea>
+                    <button class="btn btn-primary" onclick="submitReflection(44, '管教風格評估', 'ref-p44')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出反思</button>
+                    <div id="status-p44" class="status-message"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- P45: 模組六 創造 (Creating) - 導航 -->
+            <section class="center-slide" data-bloom="create">
+              <span class="badge badge-create">Level 6: Creating</span>
+              <h2 style="margin-top: 20px;">模組六：創造 (Creating)</h2>
+              <h3 style="color: #fff !important;">實踐 CRC 的未來校園</h3>
+              <p style="max-width: 600px; margin-top: 20px;">
+                本模組重點：將前述概念轉化為具體行動！動手設計一份師生共創的班級公約、規畫一套民主參與機制，並創造屬於你的 CRC 教師誓詞。
+              </p>
+            </section>
+
+            <!-- P46: 共創班級公約指南 -->
+            <section data-bloom="create">
+              <h2>6.1 創造：共創班級公約三部曲</h2>
+              <div class="slide-content-full">
+                <p>不要在開學第一天就貼出你寫好的「導師嚴格守則」。請改用以下共創流程：</p>
+                <div class="reflect-box" style="font-size: 0.85rem !important;">
+                  <p>1. <b>第一步：需求探索</b>（腦力激盪：我們希望在班上感到安全、受尊重，需要什麼環境？）</p>
+                  <p>2. <b>第二步：草案起草</b>（分組討論：針對手機、發言、整潔，制定具體可行的規範，並寫明違反規定的合理教育後果）</p>
+                  <p>3. <b>第三步：簽署與定期修訂</b>（全員表決通過並簽字，每學期中召開檢討會，依實際執行狀況彈性修訂）</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P47: 設計學生民主參與機制 -->
+            <section data-bloom="create">
+              <h2>6.2 設計：班級自治民主沙盒</h2>
+              <div class="slide-content-full">
+                <p>在中學班級創造一個讓學生體驗民主的機會：</p>
+                <ul>
+                  <li><b>輪值主席制</b>：班會不再由導師主持，而是由學生輪流擔任主席與記錄，自主擬定議程。</li>
+                  <li><b>預算共決</b>：班費的支用（如班級聚餐、購買球具）應由班會提案並表決，導師僅進行合規性審查，保留學生的財務自主權。</li>
+                  <li>透過這個過程，落實 CRC 第 12 條表意權，並培養公民素養。</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- P48: 修復式管教藍圖 -->
+            <section data-bloom="create">
+              <h2>6.3 創造：修復式正義對話架構</h2>
+              <div class="slide-content-full">
+                <p>當學生在班上發生嚴重衝突（如言語侮辱或肢體碰撞），你可以創造一個修復式正義的對話空間：</p>
+                <div class="tip-box" style="font-size: 0.85rem !important;">
+                  <h4>💬 導師引導對話五部曲</h4>
+                  <p>1. <b>「發生了什麼事？」</b>（還原現場，不帶道德評判）</p>
+                  <p>2. <b>「你當時在想什麼？現在怎麼想？」</b>（促成同理心與情緒梳理）</p>
+                  <p>3. <b>「這件事影響了誰？造成什麼傷害？」</b>（看見關係破裂的實質影響）</p>
+                  <p>4. <b>「我們要怎麼做才能修補這個傷害？」</b>（共同創造彌補與復原方案）</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P49: 未來教師誓詞與行動 -->
+            <section data-bloom="create">
+              <h2>6.4 師培生的未來教師承諾</h2>
+              <div class="slide-content-full">
+                <p>在即將結束 50 頁的學習之際，請為自己制定一個未來的 CRC 實踐承諾：</p>
+                <div class="inquiry-box">
+                  <p>「我承諾：當我進入中學任教，我將視學生為權利主體。我會克制權力，傾聽孩子的聲音，並在制定規則時納入學生的參與。努力維護兒童權利公約的四大基本原則。」</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- P50: 結語與學習反饋 -->
+            <section class="center-slide" data-bloom="create">
+              <h2>恭喜完成 50 頁 CRC 培力旅程！</h2>
+              <div class="slide-content-grid" style="text-align: left; margin-top: 20px;">
+                <div>
+                  <h3 style="color: var(--accent-cyan) !important;">下一步行動：</h3>
+                  <ul style="font-size: 0.85rem !important;">
+                    <li>返回首頁，進入<b>學務前線模擬遊戲</b>進行多題型闖關挑戰。</li>
+                    <li>檢視送出的所有反思紀錄，將成為您的學習歷程檔案。</li>
+                  </ul>
+                  <a href="index.html" class="btn btn-primary" style="margin-top: 15px; padding: 8px 20px; font-size: 0.85rem;">&larr; 返回首頁</a>
+                </div>
+                <div>
+                  <div class="glass" style="padding: 15px;">
+                    <h4 style="color: var(--accent-purple); margin-bottom: 5px; font-size: 0.95rem !important;">總結性回饋</h4>
+                    <textarea id="ref-p50" class="form-input" style="height: 80px; resize: none;" placeholder="請輸入您對整套簡報課程的建議或心得..."></textarea>
+                    <button class="btn btn-primary" onclick="submitReflection(50, '課程總反思', 'ref-p50')" style="margin-top: 8px; width: 100%; padding: 6px; font-size: 0.8rem;">送出總反思 &rarr;</button>
+                    <div id="status-p50" class="status-message"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
           </div>
-          <p style="margin-top: 15px;">本課程專為<b>大二師培生</b>設計，旨在幫助大家從傳統的「威權控制者」轉變為「人權保障的教育者」。透過 50 頁的 Bloom 認知引導，我們將系統性探索如何在中學實踐《兒童權利公約 (CRC)》。</p>
         </div>
-      </section>
+      </div>
 
-      <!-- P3: 課前探究 -->
-      <section data-bloom="intro">
-        <h2>課前探究：中學現場的管教迷思</h2>
-        <div class="slide-content-grid">
-          <div>
-            <div class="inquiry-box">
-              <h4>❓ 探究思考</h4>
-              <p>當班上學生集體抗議「學校禁止天冷時加穿校外大衣」，身為實習導師的你，第一個直覺反應是什麼？</p>
-            </div>
-            <ul>
-              <li>A. 「校規既然規定了就要遵守，集體抗議是不尊重體制。」</li>
-              <li>B. 「學生會冷是事實，但應該透過正常申訴管道，不該鼓譟。」</li>
-              <li>C. 「這涉及學生身體自主與健康權，校規可能違憲或違反 CRC。」</li>
-            </ul>
-          </div>
-          <div>
-            <div class="reflect-box">
-              <h4>✍️ 輸入您的反思（將儲存至 Google Sheet）</h4>
-              <textarea id="ref-p3" class="form-input" style="height: 100px; resize: none;" placeholder="請輸入您的看法..."></textarea>
-              <button class="btn btn-primary" onclick="submitReflection(3, '課前探究', 'ref-p3')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出反思</button>
-              <div id="status-p3" class="status-message"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- P4: 模組一 記憶 (Remembering) - 導航 -->
-      <section class="center-slide" data-bloom="remember">
-        <span class="badge badge-remember">Level 1: Remembering</span>
-        <h2 style="margin-top: 20px;">模組一：記憶 (Remembering)</h2>
-        <h3 style="color: #fff !important;">CRC 核心概念與國內法化</h3>
-        <p style="max-width: 600px; margin-top: 20px;">
-          本模組重點：認識並記憶 CRC 的起源、定義、四大基本原則，以及台灣如何透過國內法化落實校園法治。
-        </p>
-      </section>
-
-      <!-- P5: CRC的起源 -->
-      <section data-bloom="remember">
-        <h2>1.1 兒童權利公約 (CRC) 的起源</h2>
-        <div class="slide-content-full">
-          <p>聯合國於 <b>1989 年 11 月 20 日</b> 通過《兒童權利公約》(Convention on the Rights of the Child, CRC)。</p>
-          <div class="tip-box">
-            <h4>💡 歷史記憶點</h4>
-            <ul>
-              <li><b>世界上獲得最廣泛批准的人權條約</b>（全球僅極少數國家未批准）。</li>
-              <li>歷史意義：將兒童視為<b>「權利的主體」</b>，而非單純受保護的客體、家長的私有財產或國家的附屬物。</li>
-              <li>中學生在法律上與生理上皆處於此公約的完整保護與規範範圍內。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- P6: 兒童的定義 -->
-      <section data-bloom="remember">
-        <h2>1.2 誰是「兒童」？中學生算嗎？</h2>
-        <div class="slide-content-full">
-          <div class="inquiry-box">
-            <h4>❓ 法規定義</h4>
-            <p>根據 CRC 第 1 條：「兒童係指<b>未滿 18 歲</b>之人，除非對其適用之法律規定成年年齡低於 18 歲。」</p>
-          </div>
-          <ul>
-            <li><b>中學生（國中生、高中生）</b>均屬於 CRC 定義的「兒童」。</li>
-            <li>因此，師培生未來面對的中學班級，全班都是公約保障的權利主體。</li>
-            <li>不可因中學生已具備部分自主能力，而剝奪其作為兒童應享有的特殊保護與權利。</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- P7: 四大基本原則 -->
-      <section data-bloom="remember">
-        <h2>1.3 CRC 四大核心原則</h2>
-        <div class="slide-content-full">
-          <p>CRC 擁有四個貫穿所有條文的靈魂原則，必須熟記並應用於學務管理：</p>
-          <div class="slide-content-grid" style="margin-top: 10px;">
-            <div class="glass" style="padding: 15px;">
-              <span class="badge badge-remember">一、禁止歧視</span>
-              <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-secondary);">不因兒童或家長之種族、性別、語言、宗教、身心障礙或成績而有差別對待。</p>
-            </div>
-            <div class="glass" style="padding: 15px;">
-              <span class="badge badge-remember">二、兒童最佳利益</span>
-              <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-secondary);">所有涉及兒童之事務，應以兒童之最佳利益為首要考量。</p>
-            </div>
-          </div>
-          <div class="slide-content-grid" style="margin-top: 10px;">
-            <div class="glass" style="padding: 15px;">
-              <span class="badge badge-remember">三、生存及發展權</span>
-              <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-secondary);">確保兒童生存，並促進其身心、心智、道德及社會性之健全發展。</p>
-            </div>
-            <div class="glass" style="padding: 15px;">
-              <span class="badge badge-remember">四、尊重兒童意見</span>
-              <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-secondary);">有表達意見權利，並應依其年齡及成熟度予以適當看待（表意權）。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- P8: 禁止歧視原則 -->
-      <section data-bloom="remember">
-        <h2>1.4 核心原則一：禁止歧視 (Art. 2)</h2>
-        <div class="slide-content-full">
-          <p>國家及學校應採取一切適當措施，確保兒童不因其身份、行為或發表之言論而遭受歧視。</p>
-          <div class="tip-box">
-            <h4>💡 中學校園記憶點</h4>
-            <p>常見違規樣態：<b>後段班學生被限制使用圖書館、記過學生被禁止參加校外教學</b>。這些做法直接違反了「禁止歧視原則」與「受教權平等原則」。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P9: 兒童最佳利益 -->
-      <section data-bloom="remember">
-        <h2>1.5 核心原則二：兒童最佳利益 (Art. 3)</h2>
-        <div class="slide-content-full">
-          <p>所有涉及兒童之事務，行政機關、司法機關、立法機關或<b>社會福利機構（包括學校）</b>，均應以兒童最佳利益為首要考量。</p>
-          <ul>
-            <li>當學校政策（如提早半小時上學以利管理）與學生健康發展衝突時，應以「學生的最佳利益」為優先，而非「行政管理之便利」。</li>
-            <li>「最佳利益」非大人主觀認定，必須包含聆聽學生的聲音。</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- P10: 生存及發展權 -->
-      <section data-bloom="remember">
-        <h2>1.6 核心原則三：生存及發展權 (Art. 6)</h2>
-        <div class="slide-content-full">
-          <p>締約國應盡最大可能確保兒童之生存與發展。</p>
-          <div class="tip-box">
-            <h4>💡 發展權的延伸</h4>
-            <p>「發展」不只活著，還包括生理、心理、精神、道德和社會性的發展。中學嚴格限制社團活動、體育課挪用為學科考試，皆可能侵害學生的完整「發展權」。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P11: 尊重兒童意見 -->
-      <section data-bloom="remember">
-        <h2>1.7 核心原則四：尊重兒童意見 (Art. 12)</h2>
-        <div class="slide-content-full">
-          <p>對有能力形成自己意見之兒童，應確保其有權對影響其本人之一切事務自由發表意見。發表之意見應依兒童之年齡及成熟度予以適當對待。</p>
-          <ul>
-            <li>中學階段學生的成熟度已極高，學校制定班規、校規或決定作息時間時，應提供合適管道讓學生發言、討論並參與決策。</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- P12: 模組二 理解 (Understanding) - 導航 -->
-      <section class="center-slide" data-bloom="understand">
-        <span class="badge badge-understand">Level 2: Understanding</span>
-        <h2 style="margin-top: 20px;">模組二：理解 (Understanding)</h2>
-        <h3 style="color: #fff !important;">權利主體與管教邊界</h3>
-        <p style="max-width: 600px; margin-top: 20px;">
-          本模組重點：深入理解 CRC 與台灣法律位階的對應、體會「保護」與「自主」的拉鋸，並釐清教師輔導管教權的法定限度。
-        </p>
-      </section>
-
-      <!-- P13: 保護權與自主權的衡平 -->
-      <section data-bloom="understand">
-        <h2>2.1 保護權與自主權的張力</h2>
-        <div class="slide-content-full">
-          <p>中學生常處於「需要保護的兒童」與「渴望自主的準成人」之過渡期。這引發了學務上的管理衝突：</p>
-          <div class="slide-content-grid">
-            <div class="glass" style="padding: 15px;">
-              <h4 style="color: var(--accent-cyan);">🛡️ 保護面向 (Protection)</h4>
-              <p style="font-size: 0.85rem; color: var(--text-secondary);">避免受到暴力、剝削、不當性資訊侵害。如：限制校園內使用有害APP、禁止霸凌行為。</p>
-            </div>
-            <div class="glass" style="padding: 15px;">
-              <h4 style="color: var(--accent-purple);">🕊️ 自主面向 (Autonomy)</h4>
-              <p style="font-size: 0.85rem; color: var(--text-secondary);">擁有隱私權、發表言論、自主規劃社團。如：學生自主管理手機使用時間、自主決定服裝搭配。</p>
-            </div>
-          </div>
-          <p style="margin-top: 15px; font-size: 0.9rem !important;"><b>核心理解</b>：教育的本質是引導自主，而非藉保護之名進行無預警的監控與剝奪。</p>
-        </div>
-      </section>
-
-      <!-- P14: 台灣兒童權利公約施行法 -->
-      <section data-bloom="understand">
-        <h2>2.2 國內法化：《中華民國公約施行法》</h2>
-        <div class="slide-content-full">
-          <p>台灣於 <b>2014 年</b> 通過《兒童權利公約施行法》，正式將 CRC 納入國內法律體系。</p>
-          <div class="inquiry-box">
-            <h4>📜 施行法第 2 條</h4>
-            <p>「公約所列保護及促進兒童及少年權利之規定，<b>具有國內法律之效力</b>。」</p>
-          </div>
-          <p>這意味著：任何中學的校規、班規或懲處辦法，若與 CRC 條文牴觸，在法理上均屬<b>無效</b>。學校不可用「大學自治」或「校園自主管理」為由規避 CRC 的規範。</p>
-        </div>
-      </section>
-
-      <!-- P15: 台灣學校規章與CRC位階 -->
-      <section data-bloom="understand">
-        <h2>2.3 法律位階圖解</h2>
-        <div class="slide-content-full">
-          <p>請理解以下法規位階關係，這將決定你在中學現場所做行政決策的合法性：</p>
-          <div class="reflect-box" style="line-height: 1.8;">
-            <p>🥇 <b>憲法 / 國際公約 (CRC) 及施行法</b> (效力最高)</p>
-            <p>🥈 <b>教育法律</b> (教育基本法、教師法、國民教育法)</p>
-            <p>🥉 <b>行政法規/命令</b> (學校學生輔導管教辦法注意事項)</p>
-            <p>❌ <b>學校校規 / 班級公約</b> (最底層，絕對不可牴觸上方所有法規)</p>
-          </div>
-          <p style="font-size: 0.9rem !important;">許多學校的「沒收手機」、「記過不准申訴」校規，因違反憲法與 CRC 的比例原則及訴訟權，在法律上是禁不起挑戰的。</p>
-        </div>
-      </section>
-
-      <!-- P16: 尊重意見的誤區 -->
-      <section data-bloom="understand">
-        <h2>2.4 理解表意權：非「為所欲為」</h2>
-        <div class="slide-content-full">
-          <p>許多老師抗拒 CRC，是誤以為表意權代表「學生要怎樣就怎樣」。</p>
-          <div class="tip-box">
-            <h4>💡 正確理解</h4>
-            <ul>
-              <li><b>表意權是「程序性權利」</b>：確保學生的意見有被傾聽、記錄並列入考量的機會。</li>
-              <li><b>非「決定性權利」</b>：最終決策仍應綜合專業評估。但若學校完全沒有聽取學生代表意見就逕行公告新規，即違反了 CRC。</li>
-              <li>成熟度評估：年齡越大，其表意所占的決策權重應隨之提高。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- P17: 兒童最佳利益評估指標 -->
-      <section data-bloom="understand">
-        <h2>2.5 「最佳利益」的評估架構</h2>
-        <div class="slide-content-full">
-          <p>當面臨導師決策兩難時，如何判定何為「兒童最佳利益」？應從以下維度綜合評估：</p>
-          <ul>
-            <li><b>兒童的看法</b>：該名學生的真實意願是什麼？</li>
-            <li><b>兒童的身份與特徵</b>：考量其家庭背景、特教狀態或文化背景。</li>
-            <li><b>兒童的安全與健康</b>：該決策是否危及學生身心安全？</li>
-            <li><b>學習權的連續性</b>：該決策是否會導致學生中斷學習（如停課、禁足）？</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- P18: 教師管教權的法定邊界 -->
-      <section data-bloom="understand">
-        <h2>2.6 教師輔導管教權的實質邊界</h2>
-        <div class="slide-content-full">
-          <p>根據教育部《學校訂定教師輔導與管教學生辦法注意事項》：</p>
-          <div class="inquiry-box">
-            <p>教師管教應基於教育目的，遵守<b>比例原則</b>、<b>人權保障</b>與<b>正當法律程序</b>。禁止實施體罰、誹謗或身心虐待。</p>
-          </div>
-          <p>傳統上的「株連處分（全班罰站）」、「沒收私人財產不還」均已明確超出法律授予教師的合理管教權範圍，在人權與法律層面皆屬侵權行為。</p>
-        </div>
-      </section>
-
-      <!-- P19: 探究任務：威權 vs. 人權 -->
-      <section data-bloom="understand">
-        <h2>2.7 理解篇探究：威權與人權的界線</h2>
-        <div class="slide-content-grid">
-          <div>
-            <div class="inquiry-box">
-              <h4>❓ 衝突情境</h4>
-              <p>某校教官為了抓抽菸的學生，在午休時間無預警進入班級，要求所有學生把書包打開翻找。此行為合法嗎？為什麼？</p>
-            </div>
-          </div>
-          <div>
-            <div class="reflect-box">
-              <h4>✍️ 輸入您的分析</h4>
-              <textarea id="ref-p19" class="form-input" style="height: 100px; resize: none;" placeholder="請從法律位階或CRC原則進行分析..."></textarea>
-              <button class="btn btn-primary" onclick="submitReflection(19, '威權與人權的界線', 'ref-p19')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出分析</button>
-              <div id="status-p19" class="status-message"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- P20: 模組二自我檢核 -->
-      <section class="center-slide" data-bloom="understand">
-        <h2>模組二自我檢核 (Check Point)</h2>
-        <div class="glass" style="padding: 30px; max-width: 700px; text-align: left; margin: 0 auto;">
-          <p>🟩 <b>我能說出 CRC 在台灣國內法化的具體法律名稱。</b></p>
-          <p>🟩 <b>我能解釋為何校規的效力低於國際人權公約。</b></p>
-          <p>🟩 <b>我理解「兒童最佳利益」並非由教師單方面主觀認定。</b></p>
-        </div>
-      </section>
-
-      <!-- P21: 模組三 應用 (Applying) - 導航 -->
-      <section class="center-slide" data-bloom="apply">
-        <span class="badge badge-apply">Level 3: Applying</span>
-        <h2 style="margin-top: 20px;">模組三：應用 (Applying)</h2>
-        <h3 style="color: #fff !important;">校園生活規約實務</h3>
-        <p style="max-width: 600px; margin-top: 20px;">
-          本模組重點：將 CRC 原則應用於中學常見學務爭議：服裝儀容、手機管制、書包搜查以及學生會議代表權的實務落實。
-        </p>
-      </section>
-
-      <!-- P22: 服儀規範歷史與現狀 -->
-      <section data-bloom="apply">
-        <h2>3.1 服裝儀容規範的法律變革</h2>
-        <div class="slide-content-full">
-          <p>教育部已明確發文禁止學校因「服裝儀容問題」處分學生（記警告、記過）。</p>
-          <div class="tip-box">
-            <h4>💡 現行教育部政策</h4>
-            <ul>
-              <li>學校應設有「服裝儀容委員會」，且必須有<b>學生代表</b>參與決策。</li>
-              <li>學校<b>不得</b>限制學生髮式（長短、染燙）。</li>
-              <li>除特定安全與識別需求外，學校應開放學生自由搭配校服、班服或體育服，並在低溫時允許自由加穿校外禦寒大衣。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- P23: 服儀爭議實務應用 -->
-      <section data-bloom="apply">
-        <h2>3.2 實務應用：面對冷天穿校外外套</h2>
-        <div class="slide-content-full">
-          <p><b>案例</b>：寒流來襲，小明因為外套不夠保暖，在外套內加了件亮紅色的個人連帽衛衣，露出帽子。值週教官以「服儀不整」要求小明脫掉。此時身為導師的你該如何處理？</p>
-          <div class="reflect-box">
-            <h4>🚀 專業教師的 CRC 行動方案</h4>
-            <p>1. <b>即時保護</b>：以學生保暖與健康權為優先，向教官說明並保留其穿著。</p>
-            <p>2. <b>法規溝通</b>：提醒教官教育部規定「低溫特報時學生得自由添加校外防寒衣物」，此處分已違法。</p>
-            <p>3. <b>校規檢修</b>：於校務會議提案，修正學校過時的服儀裁罰標準。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P24: 手機使用規範與隱私 -->
-      <section data-bloom="apply">
-        <h2>3.3 智慧型手機的禁用與規範</h2>
-        <div class="slide-content-full">
-          <p>手機涉及學生的<b>資訊近用權</b>與<b>個人隱私權</b>，但同時也影響教學秩序。如何合理應用？</p>
-          <div class="inquiry-box">
-            <h4>⚖️ 比例原則之應用</h4>
-            <ul>
-              <li><b>上課期間</b>：為維護他人受教權，學校可規定集中保管或限制使用。</li>
-              <li><b>下課與放學時間</b>：屬於學生的私人時間，除涉及騷擾或霸凌外，學校<b>無權</b>禁止其合理通訊與娛樂。</li>
-              <li><b>嚴禁</b>：教師私自解鎖學生手機查看聊天紀錄或相簿（違反刑法妨害秘密罪與 CRC 隱私權）。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- P25: 手機暫時保管的界線 -->
-      <section data-bloom="apply">
-        <h2>3.4 手機「暫時保管」的法律限制</h2>
-        <div class="slide-content-full">
-          <p>很多老師習慣「沒收手機一星期」或「叫家長來拿才還」。這在法律上屬於侵占與侵害財產權。</p>
-          <div class="tip-box">
-            <h4>💡 正確處置流程</h4>
-            <p>上課玩手機時，教師可暫時保管，但<b>必須於當日放學前歸還學生</b>。若需由家長領回，必須有校規明文規定且家長同意，且不可無限期扣留。保管期間學校負有保管責任，若損壞需負賠償責任。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P26: 安全檢查與書包搜查 -->
-      <section data-bloom="apply">
-        <h2>3.5 安全檢查的實務應用 (Locker Searches)</h2>
-        <div class="slide-content-full">
-          <p>搜查學生書包或置物櫃，是侵害人身與財產隱私權的極端行政行為。非有必要，不得為之。</p>
-          <div class="inquiry-box">
-            <h4>⚠️ 法定要件（必須同時滿足）</h4>
-            <p>1. <b>合理懷疑</b>：有具體事證顯示特定學生攜帶違禁品（如刀械、毒品）。不可因「全班成績退步」或「為了預防」進行普查。</p>
-            <p>2. <b>程序正義</b>：搜查時需有家長代表或學生代表在場，且必須**全程錄影**記錄備查。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P27: 安全檢查程序檢核表 -->
-      <section data-bloom="apply">
-        <h2>3.6 搜查書包標準流程 (SOP)</h2>
-        <div class="slide-content-full">
-          <p>若學校確有必要進行安全檢查，請應用以下法定流程，避免未來捲入法律訴訟：</p>
-          <div class="reflect-box">
-            <p>📌 <b>步驟 1</b>：接獲具體線報（例如：看見學生包包有刀柄）。</p>
-            <p>📌 <b>步驟 2</b>：通報學務處，由學務人員陪同，並通知家長代表或學生自治幹部到場。</p>
-            <p>📌 <b>步驟 3</b>：於監視器下或安排錄影，由學生自己打開包包，教師進行檢視。</p>
-            <p>📌 <b>步驟 4</b>：若發現違禁品，依法沒入並填寫保管收據，通報相關單位。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P28: 學生自治與社團參與 -->
-      <section data-bloom="apply">
-        <h2>3.7 學生自治與社團權益的應用</h2>
-        <div class="slide-content-full">
-          <p>CRC 第 15 條保障兒童之<b>結社與和平集會自由</b>。</p>
-          <ul>
-            <li>中學不得無故限制學生創辦社團的權利，或以「課業退步」為由強制解散學生社團。</li>
-            <li>學生自治會（學生會）選舉應由學生自主運作，師長應扮演「輔導與諮詢」角色，而非「審查與篩選候選人」的控制者。</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- P29: 學生代表參與校務決策 -->
-      <section data-bloom="apply">
-        <h2>3.8 學生代表在校務會議的角色</h2>
-        <div class="slide-content-full">
-          <p>依據高級中等教育法，校務會議必須有**學生代表**列席，且比例應符合法令規範。</p>
-          <div class="tip-box">
-            <h4>💡 師培生未來應用指南</h4>
-            <p>在會議中，當看見行政主管以「小孩子不懂事」杯葛學生提案時，師培生應主動聲援學生，協助其將提案以成熟的文字呈現，促成真正的親師生共治。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P30: 應用篇實務思考 -->
-      <section data-bloom="apply">
-        <h2>3.9 應用篇思考：制定手機保管公約</h2>
-        <div class="slide-content-grid">
-          <div>
-            <div class="inquiry-box">
-              <h4>❓ 任務情境</h4>
-              <p>班級會議上，學生提案「希望中午吃飯時可以自由看手機配飯」。身為導師，你如何應用 CRC 表意權與合理限制，跟學生達成雙贏的班級手機公約？</p>
-            </div>
-          </div>
-          <div>
-            <div class="reflect-box">
-              <h4>✍️ 輸入您的雙贏方案</h4>
-              <textarea id="ref-p30" class="form-input" style="height: 100px; resize: none;" placeholder="請輸入您預期與學生協商的公約草案..."></textarea>
-              <button class="btn btn-primary" onclick="submitReflection(30, '手機保管公約', 'ref-p30')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出方案</button>
-              <div id="status-p30" class="status-message"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- P31: 模組四 分析 (Analyzing) - 導航 -->
-      <section class="center-slide" data-bloom="analyze">
-        <span class="badge badge-analyze">Level 4: Analyzing</span>
-        <h2 style="margin-top: 20px;">模組四：分析 (Analyzing)</h2>
-        <h3 style="color: #fff !important;">校園衝突與權利解構</h3>
-        <p style="max-width: 600px; margin-top: 20px;">
-          本模組重點：學會解構中學日常衝突背後的權利衝突（如：集體秩序 vs. 個人隱私；管教權 vs. 言論自由），分析結構性壓迫。
-        </p>
-      </section>
-
-      <!-- P32: 集體秩序與個人隱私衝突 -->
-      <section data-bloom="analyze">
-        <h2>4.1 解析衝突：集體秩序 vs. 個人隱私</h2>
-        <div class="slide-content-full">
-          <p>中學管理最常見的衝突核心：<b>「為了全體的安全，能否侵害個人的隱私？」</b></p>
-          <div class="slide-content-grid" style="margin-top: 15px;">
-            <div class="glass" style="padding: 20px;">
-              <h4 style="color: var(--accent-cyan);">📁 學校管理立場</h4>
-              <p style="font-size: 0.85rem; color: var(--text-secondary);">「如果不能隨時抽查抽屜，學生帶違禁品、色情漫畫甚至管制藥物怎麼辦？這會危害整體秩序！」</p>
-            </div>
-            <div class="glass" style="padding: 20px;">
-              <h4 style="color: var(--accent-pink);">👤 CRC 人權立場</h4>
-              <p style="font-size: 0.85rem; color: var(--text-secondary);">「抽屜是個人空間的延伸。無差別的抽查破壞了師生互信，且對無辜學生構成隱私侵害，違反侵害最小原則。」</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- P33: 言論自由與校園秩序 -->
-      <section data-bloom="analyze">
-        <h2>4.2 解構衝突：言論自由 vs. 教師尊嚴</h2>
-        <div class="slide-content-full">
-          <p><b>案例</b>：學生在 Threads 發文抱怨：「我們班導超爛，上課無聊又愛挑毛病，根本是法西斯。」</p>
-          <div class="tip-box">
-            <h4>🔍 結構性分析</h4>
-            <ul>
-              <li><b>言論自由的保障</b>：學生有權批評公共事務（教師教學屬於校園公共事務）。</li>
-              <li><b>真實惡意與侮辱的界線</b>：若無謾罵髒話或捏造誹謗事實，單純的「主觀抱怨」受言論自由保障。</li>
-              <li><b>導師的專業回應</b>：若以「不敬師長」記過，在法理上必被撤銷。導師應分析抱怨背後的真實需求，並以專業教學溝通解決。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- P34: 霸凌事件中的CRC人權分析 -->
-      <section data-bloom="analyze">
-        <h2>4.3 霸凌處理中的人權分析</h2>
-        <div class="slide-content-full">
-          <p>當班上發生霸凌，傳統手段是「記大過、強制轉班」，但這常導致被霸凌者與霸凌者皆受創。從 CRC 角度分析：</p>
-          <ul>
-            <li><b>霸凌者亦是發展中的兒童</b>：其偏差行為背後常有家庭功能失調或心理障礙，同樣享有發展權與受教權。</li>
-            <li><b>修復式正義 (Restorative Justice)</b>：修復關係、重建安全感，而非單純的行政懲罰。</li>
-            <li><b>保護被害者</b>：確保其受教權不因調查程序再次受損。</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- P35: 輔導紀錄隱私權爭議 -->
-      <section data-bloom="analyze">
-        <h2>4.4 輔導紀錄：家長要求查閱的權利分析</h2>
-        <div class="slide-content-full">
-          <p><b>衝突點</b>：家長認為自己是監護人，有權知道孩子在輔導室說的一切；學生則要求輔導老師保密。</p>
-          <div class="inquiry-box">
-            <h4>💡 CRC 最佳利益衡平法</h4>
-            <p>輔導紀錄屬於高敏感個人隱私。若學生表示「讓父母知道會導致家庭暴力或關係決裂」，基於<b>兒童最佳利益</b>與<b>隱私權</b>，輔導教師應婉拒直接提供，改由轉譯方式向家長說明孩子的核心需求，而非無條件讓步給監護權。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P36: 罰站與反省時間的本質分析 -->
-      <section data-bloom="analyze">
-        <h2>4.5 處分手段分析：罰站與反省時間</h2>
-        <div class="slide-content-full">
-          <p>教育部規定：教師得採取「罰站（每次不超過一堂課，每日累計不超過兩小時）」或「要求反省」。</p>
-          <div class="reflect-box">
-            <h4>⚠️ 質性分析：合理管教 vs. 身體折磨</h4>
-            <ul>
-              <li><b>罰站的空間</b>：必須在教室內或走廊有師長照看處，嚴禁在太陽下曝曬或大雨中進行（此屬虐待）。</li>
-              <li><b>反省的目的</b>：是為了冷靜與思考，不可伴隨抄寫不合理數量的課文（變相體罰）。</li>
-              <li><b>身心評估</b>：若學生身體不適或領有特教手冊，不可實施罰站。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- P37: 學校權力不對等分析 -->
-      <section data-bloom="analyze">
-        <h2>4.6 中學校園的結構性權力分析</h2>
-        <div class="slide-content-full">
-          <p>師培生需看清校園的權力結構：</p>
-          <div class="slide-content-grid">
-            <div class="glass" style="padding: 15px;">
-              <h4 style="color: var(--accent-cyan);">教師端 ⚙️</h4>
-              <p style="font-size: 0.85rem; color: var(--text-secondary);">掌握打分數、記過提報、日常控管的生殺大權，易流於主觀與威權管理。</p>
-            </div>
-            <div class="glass" style="padding: 15px;">
-              <h4 style="color: var(--accent-pink);">學生端 👥</h4>
-              <p style="font-size: 0.85rem; color: var(--text-secondary);">多數政策只能被動接受，申訴程序複雜且易遭貼標籤，處於絕對弱勢。</p>
-            </div>
-          </div>
-          <p style="margin-top: 15px; font-size: 0.9rem !important;"><b>教師素養</b>：意識到自身的權力優勢，並主動約束權力的過度膨脹，是實踐 CRC 的起點。</p>
-        </div>
-      </section>
-
-      <!-- P38: 分析篇探究思考 -->
-      <section data-bloom="analyze">
-        <h2>4.7 分析篇探究：解構不合理校規</h2>
-        <div class="slide-content-grid">
-          <div>
-            <div class="inquiry-box">
-              <h4>❓ 案例分析</h4>
-              <p>某高中校規：「攜帶手機未關機或發出聲響者，記小過一次，並扣押手機至學期末。」請分析此校規侵害了學生在 CRC 與我國法律上的哪些權益？</p>
-            </div>
-          </div>
-          <div>
-            <div class="reflect-box">
-              <h4>✍️ 輸入您的結構分析</h4>
-              <textarea id="ref-p38" class="form-input" style="height: 100px; resize: none;" placeholder="請列出被侵害的權利與法理缺陷..."></textarea>
-              <button class="btn btn-primary" onclick="submitReflection(38, '解構不合理校規', 'ref-p38')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出分析</button>
-              <div id="status-p38" class="status-message"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- P39: 模組五 評估 (Evaluating) - 導航 -->
-      <section class="center-slide" data-bloom="evaluate">
-        <span class="badge badge-evaluate">Level 5: Evaluating</span>
-        <h2 style="margin-top: 20px;">模組五：評估 (Evaluating)</h2>
-        <h3 style="color: #fff !important;">現行學務規章大體檢</h3>
-        <p style="max-width: 600px; margin-top: 20px;">
-          本模組重點：培力批判性思考，評估學校現行管教手段（愛校服務、警告警告記過）的效能與合法性，並進行自我管理風格評估。
-        </p>
-      </section>
-
-      <!-- P40: 評估愛校服務 -->
-      <section data-bloom="evaluate">
-        <h2>5.1 評估「愛校服務」的教育本質</h2>
-        <div class="slide-content-full">
-          <p>許多學校以「愛校服務（銷過）」做為替代懲罰。我們來評估其價值：</p>
-          <div class="tip-box">
-            <h4>⚖️ 評估矩陣</h4>
-            <ul>
-              <li><b>正面效益</b>：提供學生彌補過錯、透過勞動進行自我反省與社區服務的機會。</li>
-              <li><b>負面扭曲</b>：若服務內容流於「幫老師跑腿買午餐」、「無保護裝備掃化糞池」，則純屬勞役懲罰，侵害兒童尊嚴，違反 CRC 第 32 條（免受經濟剝削或有害勞動）。</li>
-              <li><b>改善方向</b>：愛校服務內容應與其犯錯行為具有教育上的關聯性。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- P41: 評估記過警告制度 -->
-      <section data-bloom="evaluate">
-        <h2>5.2 評估「記過警告制度」的實效</h2>
-        <div class="slide-content-full">
-          <p>傳統記過（警告、小過、大過）在輔導管教上的有效性與人權衝擊評估：</p>
-          <div class="reflect-box">
-            <p>🚫 <b>易遭貼標籤</b>：一旦被記過，學生容易產生「破罐子破摔」的消極心理，加劇校園邊緣化。</p>
-            <p>🚫 <b>忽略根本問題</b>：記過是快速的行政手段，卻無法解決學生遲到、曠課背後的家庭失能或心理憂鬱問題。</p>
-            <p>✅ <b>CRC 建議</b>：建立「輔導優先於懲處」機制，限制單純以記過代替輔導的行政懶惰行為。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P42: 評估學校獎懲的隱性歧視 -->
-      <section data-bloom="evaluate">
-        <h2>5.3 獎勵機制的隱性歧視評估</h2>
-        <div class="slide-content-full">
-          <p><b>思辨</b>：「期末考前三名的學生可以獲得與校長共進下午茶的獎勵，後段班學生則需要留校自習。」</p>
-          <ul>
-            <li>這看似是激勵，但在評估上，這是否構成對成績落後學生的隱性差別對待與歧視？</li>
-            <li>CRC 要求保障所有學生的休閒權與遊戲權（第 31 條），留校自習是否過度限縮了部分學生的自由？</li>
-            <li>我們應該如何重新設計能包容多元智能的獎勵機制？</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- P43: 批判傳統乖學生指標 -->
-      <section data-bloom="evaluate">
-        <h2>5.4 批判性審視傳統「乖學生」指標</h2>
-        <div class="slide-content-full">
-          <p>傳統中學評估好學生的標準：「聽話、不問問題、配合度高、成績優異」。</p>
-          <div class="inquiry-box">
-            <h4>💡 從 CRC 重新評估</h4>
-            <p>這些指標實質上是壓抑了學生的<b>表意權</b>與<b>獨立人格發展</b>。未來教師應鼓勵學生提問、質疑不合理的常規，並視其為「具備民主素養與思辨能力」的健康表現，而非「難管教的刺頭」。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P44: 評估篇自我覺察任務 -->
-      <section data-bloom="evaluate">
-        <h2>5.5 評估篇自我覺察：你的管教風格</h2>
-        <div class="slide-content-grid">
-          <div>
-            <div class="inquiry-box">
-              <h4>❓ 自我評估</h4>
-              <p>在你心目中，一個「理想的中學班級」應該是什麼樣子的？你會為了追求「整齊劃一的班級秩序」而適度犧牲學生的「個人表意與隱私權」嗎？請誠實評估你的教育信念。</p>
-            </div>
-          </div>
-          <div>
-            <div class="reflect-box">
-              <h4>✍️ 輸入您的覺察反思</h4>
-              <textarea id="ref-p44" class="form-input" style="height: 100px; resize: none;" placeholder="請寫下你對管理與權利權衡的真實看法..."></textarea>
-              <button class="btn btn-primary" onclick="submitReflection(44, '管教風格評估', 'ref-p44')" style="margin-top: 10px; padding: 6px 15px; font-size: 0.8rem;">送出反思</button>
-              <div id="status-p44" class="status-message"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- P45: 模組六 創造 (Creating) - 導航 -->
-      <section class="center-slide" data-bloom="create">
-        <span class="badge badge-create">Level 6: Creating</span>
-        <h2 style="margin-top: 20px;">模組六：創造 (Creating)</h2>
-        <h3 style="color: #fff !important;">實踐 CRC 的未來校園</h3>
-        <p style="max-width: 600px; margin-top: 20px;">
-          本模組重點：將前述概念轉化為具體行動！動手設計一份師生共創的班級公約、規畫一套民主參與機制，並創造屬於你的 CRC 教師誓詞。
-        </p>
-      </section>
-
-      <!-- P46: 共創班級公約指南 -->
-      <section data-bloom="create">
-        <h2>6.1 創造：共創班級公約三部曲</h2>
-        <div class="slide-content-full">
-          <p>不要在開學第一天就貼出你寫好的「導師嚴格守則」。請改用以下共創流程：</p>
-          <div class="reflect-box">
-            <p>1. <b>第一步：需求探索</b>（腦力激盪：我們希望在班上感到安全、受尊重，需要什麼環境？）</p>
-            <p>2. <b>第二步：草案起草</b>（分組討論：針對手機、發言、整潔，制定具體可行的規範，並寫明違反規定的合理教育後果）</p>
-            <p>3. <b>第三步：簽署與定期修訂</b>（全員表決通過並簽字，每學期中召開檢討會，依實際執行狀況彈性修訂）</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P47: 設計學生民主參與機制 -->
-      <section data-bloom="create">
-        <h2>6.2 設計：班級自治民主沙盒</h2>
-        <div class="slide-content-full">
-          <p>在中學班級創造一個讓學生體驗民主的機會：</p>
-          <ul>
-            <li><b>輪值主席制</b>：班會不再由導師主持，而是由學生輪流擔任主席與記錄，自主擬定議程。</li>
-            <li><b>預算共決</b>：班費的支用（如班級聚餐、購買球具）應由班會提案並表決，導師僅進行合規性審查，保留學生的財務自主權。</li>
-            <li>透過這個過程，落實 CRC 第 12 條表意權，並培養公民素養。</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- P48: 修復式管教藍圖 -->
-      <section data-bloom="create">
-        <h2>6.3 創造：修復式正義對話架構</h2>
-        <div class="slide-content-full">
-          <p>當學生在班上發生嚴重衝突（如言語侮辱或肢體碰撞），你可以創造一個修復式正義的對話空間：</p>
-          <div class="tip-box">
-            <h4>💬 導師引導對話五部曲</h4>
-            <p>1. <b>「發生了什麼事？」</b>（還原現場，不帶道德評判）</p>
-            <p>2. <b>「你當時在想什麼？現在怎麼想？」</b>（促成同理心與情緒梳理）</p>
-            <p>3. <b>「這件事影響了誰？造成什麼傷害？」</b>（看見關係破裂的實質影響）</p>
-            <p>4. <b>「我們要怎麼做才能修補這個傷害？」</b>（共同創造彌補與復原方案）</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P49: 未來教師誓詞與行動 -->
-      <section data-bloom="create">
-        <h2>6.4 師培生的未來教師承諾</h2>
-        <div class="slide-content-full">
-          <p>在即將結束 50 頁的學習之際，請為自己制定一個未來的 CRC 實踐承諾：</p>
-          <div class="inquiry-box">
-            <p>「我承諾：當我進入中學實習與任教，我將視學生為獨立的權利主體。我會克制自身的權力，傾聽孩子的聲音，並在制定規則時納入學生的參與。我會努力在校園中維護兒童權利公約的四大基本原則。」</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- P50: 結語與學習反饋 -->
-      <section class="center-slide" data-bloom="create">
-        <h2>恭喜完成 50 頁 CRC 培力旅程！</h2>
-        <div class="slide-content-grid" style="text-align: left; margin-top: 30px;">
-          <div>
-            <h3 style="color: var(--accent-cyan) !important;">下一步行動：</h3>
-            <ul>
-              <li>返回首頁，進入<b>學務前線模擬遊戲</b>挑戰實務決策。</li>
-              <li>檢視剛才送出的所有反思紀錄，將成為您的師培歷程檔案。</li>
-            </ul>
-            <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">&larr; 返回首頁</a>
-          </div>
-          <div>
-            <div class="glass" style="padding: 20px;">
-              <h4 style="color: var(--accent-purple); margin-bottom: 10px;">總結性回饋</h4>
-              <textarea id="ref-p50" class="form-input" style="height: 100px; resize: none;" placeholder="請輸入您對整套簡報課程的建議或心得..."></textarea>
-              <button class="btn btn-primary" onclick="submitReflection(50, '課程總反思', 'ref-p50')" style="margin-top: 10px; width: 100%;">送出總反思 &rarr;</button>
-              <div id="status-p50" class="status-message"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </div>
-
-  <!-- Slide-out Navigation Panel -->
-  <button class="slides-nav-toggle" id="nav-panel-toggle" title="切換快速跳轉選單">☰</button>
-  <div class="slides-nav-panel" id="nav-panel">
-    <h3 style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 5px;">快速跳轉選單</h3>
-    <div id="nav-list">
-      <!-- Generated dynamically in slides.js -->
-    </div>
+      <!-- Bottom: Custom Progress Bar -->
+      <div class="slides-custom-progress" id="custom-progress"></div>
+      
+    </main>
   </div>
 
   <!-- Scripts -->

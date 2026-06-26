@@ -9,42 +9,7 @@
   position: relative;
 }
 
-/* Auth Modal overlay styling at start */
-.auth-modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(5, 7, 15, 0.85);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  z-index: 9998;
-  transition: opacity 0.5s ease;
-}
 
-.auth-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  width: 90%;
-  max-width: 460px;
-  padding: 35px;
-  box-shadow: 0 0 35px rgba(0, 242, 254, 0.25);
-  animation: modalPop 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-@keyframes modalPop {
-  0% { transform: translate(-50%, -40%); opacity: 0; }
-  100% { transform: translate(-50%, -50%); opacity: 1; }
-}
-
-.auth-modal.closed, .auth-modal-backdrop.closed {
-  opacity: 0;
-  pointer-events: none;
-}
 
 /* Sidebar Menu styling (Left Side) */
 .sidebar {

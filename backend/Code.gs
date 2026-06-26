@@ -57,12 +57,12 @@ function addDataToSheet(sheetName, data) {
   var defaultHeaders = [];
   if (sheetName === "game_scores") {
     defaultHeaders = [
-      "Timestamp", "PlayerName", "StudentID", "CRC_Score", "Order_Score", 
+      "Timestamp", "PlayerName", "Department", "StudentID", "CRC_Score", "Order_Score", 
       "Professional_Score", "Persona", "ChoicePath", 
       "ShortAnswer1", "ShortAnswer2", "CovenantStatement"
     ];
   } else if (sheetName === "slides_feedback") {
-    defaultHeaders = ["Timestamp", "PlayerName", "Department", "SlideNumber", "SlideTitle", "ResponseText"];
+    defaultHeaders = ["Timestamp", "PlayerName", "Department", "StudentID", "SlideNumber", "SlideTitle", "ResponseText"];
   } else {
     defaultHeaders = ["Timestamp", "DataDump"];
   }
@@ -84,19 +84,33 @@ function addDataToSheet(sheetName, data) {
   var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   
   // Migrate headers for game_scores if needed
-  if (sheetName === "game_scores" && headers.indexOf("ShortAnswer1") === -1) {
-    var missingHeaders = ["ShortAnswer1", "ShortAnswer2", "CovenantStatement"];
-    var currentLastCol = sheet.getLastColumn();
-    sheet.getRange(1, currentLastCol + 1, 1, missingHeaders.length).setValues([missingHeaders]);
-    headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  if (sheetName === "game_scores") {
+    if (headers.indexOf("Department") === -1) {
+      sheet.insertColumnBefore(3); // Insert Department column after PlayerName (column 2)
+      sheet.getRange(1, 3).setValue("Department").setFontWeight("bold").setBackground("#e0f2fe");
+      headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    }
+    if (headers.indexOf("ShortAnswer1") === -1) {
+      var missingHeaders = ["ShortAnswer1", "ShortAnswer2", "CovenantStatement"];
+      var currentLastCol = sheet.getLastColumn();
+      sheet.getRange(1, currentLastCol + 1, 1, missingHeaders.length).setValues([missingHeaders]);
+      headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    }
   }
 
   // Migrate headers for slides_feedback if needed
-  if (sheetName === "slides_feedback" && headers.indexOf("PlayerName") === -1) {
-    var missingFeedbackHeaders = ["PlayerName", "Department"];
-    var currentLastCol = sheet.getLastColumn();
-    sheet.getRange(1, currentLastCol + 1, 1, missingFeedbackHeaders.length).setValues([missingFeedbackHeaders]);
-    headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  if (sheetName === "slides_feedback") {
+    if (headers.indexOf("StudentID") === -1) {
+      sheet.insertColumnBefore(4); // Insert StudentID column after Department (column 3)
+      sheet.getRange(1, 4).setValue("StudentID").setFontWeight("bold").setBackground("#e0f2fe");
+      headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    }
+    if (headers.indexOf("PlayerName") === -1) {
+      var missingFeedbackHeaders = ["PlayerName", "Department"];
+      var currentLastCol = sheet.getLastColumn();
+      sheet.getRange(1, currentLastCol + 1, 1, missingFeedbackHeaders.length).setValues([missingFeedbackHeaders]);
+      headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    }
   }
 
   var rowValues = [];

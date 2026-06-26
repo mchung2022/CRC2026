@@ -13,6 +13,28 @@
   <div class="bg-glow bg-glow-1"></div>
   <div class="bg-glow bg-glow-2"></div>
 
+  <!-- Student Info Input Overlay (Required at Start of Game) -->
+  <div class="auth-modal-backdrop" id="auth-backdrop"></div>
+  <div class="auth-modal glass" id="auth-modal">
+    <h3 style="color: var(--accent-purple); font-weight: 800; margin-bottom: 10px; font-size: 1.3rem; text-align: center;">🎮 師培生遊戲登錄</h3>
+    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5; text-align: center;">
+      請輸入您的姓名、系級與學號以開啟模擬遊戲。您的挑戰與決策資料將會即時寫入 Google Sheets 中。
+    </p>
+    <div class="form-group" style="margin-bottom: 12px;">
+      <label for="student-name">師培生姓名</label>
+      <input type="text" id="student-name" class="form-input" placeholder="例如：王小明" required>
+    </div>
+    <div class="form-group" style="margin-bottom: 12px;">
+      <label for="student-dept">系級與班別</label>
+      <input type="text" id="student-dept" class="form-input" placeholder="例如：教育系大二甲班" required>
+    </div>
+    <div class="form-group" style="margin-bottom: 20px;">
+      <label for="student-id">學號</label>
+      <input type="text" id="student-id" class="form-input" placeholder="例如：D11099999" required>
+    </div>
+    <button class="btn btn-primary" id="btn-start-game" style="width: 100%; padding: 12px;">開始挑戰模擬遊戲 &rarr;</button>
+  </div>
+
   <div class="game-viewport">
     <!-- Header -->
     <header class="game-header">

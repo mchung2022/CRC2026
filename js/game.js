@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
       sa2: '',
       covenant: ''
     },
-    logs: []
+    logs: [],
+    playerName: '',
+    playerDept: '',
+    playerId: ''
   };
 
   // Stage definition map
@@ -299,6 +302,62 @@ document.addEventListener('DOMContentLoaded', () => {
     playerId: document.getElementById('player-id'),
     uploadStatus: document.getElementById('upload-status')
   };
+
+  // --- Game Startup Login Modal Controller ---
+  const authModal = document.getElementById('auth-modal');
+  const authBackdrop = document.getElementById('auth-backdrop');
+  const btnStartGame = document.getElementById('btn-start-game');
+  const studentNameInput = document.getElementById('student-name');
+  const studentDeptInput = document.getElementById('student-dept');
+  const studentIdInput = document.getElementById('student-id');
+
+  // Check Session Storage for logged in student
+  const savedName = sessionStorage.getItem('crc_student_name');
+  const savedDept = sessionStorage.getItem('crc_student_dept');
+  const savedId = sessionStorage.getItem('crc_student_id');
+
+  if (savedName && savedDept && savedId) {
+    studentNameInput.value = savedName;
+    studentDeptInput.value = savedDept;
+    studentIdInput.value = savedId;
+    closeGameAuthModal(savedName, savedDept, savedId);
+  }
+
+  btnStartGame.addEventListener('click', () => {
+    const name = studentNameInput.value.trim();
+    const dept = studentDeptInput.value.trim();
+    const sid = studentIdInput.value.trim();
+
+    if (!name || !dept || !sid) {
+      alert('請填寫完整姓名、系級與學號後再開始遊戲！');
+      return;
+    }
+
+    sessionStorage.setItem('crc_student_name', name);
+    sessionStorage.setItem('crc_student_dept', dept);
+    sessionStorage.setItem('crc_student_id', sid);
+    
+    closeGameAuthModal(name, dept, sid);
+  });
+
+  function closeGameAuthModal(name, dept, sid) {
+    authModal.classList.add('closed');
+    authBackdrop.classList.add('closed');
+    
+    // Auto fill and lock final result submission inputs
+    if (ui.playerName) {
+      ui.playerName.value = name;
+      ui.playerName.readOnly = true;
+    }
+    if (ui.playerId) {
+      ui.playerId.value = sid;
+      ui.playerId.readOnly = true;
+    }
+    
+    state.playerName = name;
+    state.playerDept = dept;
+    state.playerId = sid;
+  }
 
   /**
    * Clamp stat values
@@ -901,6 +960,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const payload = {
       PlayerName: name,
+      Department: state.playerDept || sessionStorage.getItem('crc_student_dept') || '',
       StudentID: sid,
       CRC_Score: state.stats.crc,
       Order_Score: state.stats.order,
@@ -952,8 +1012,8 @@ document.addEventListener('DOMContentLoaded', () => {
     state.logs = [];
     state.shortAnswers = { sa1: '', sa2: '', covenant: '' };
 
-    ui.playerName.value = '';
-    ui.playerId.value = '';
+    ui.playerName.value = state.playerName || '';
+    ui.playerId.value = state.playerId || '';
     ui.btnSubmit.disabled = false;
     ui.uploadStatus.className = 'status-message';
     ui.uploadStatus.textContent = '';

@@ -7,14 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnStart = document.getElementById('btn-start-presentation');
   const studentNameInput = document.getElementById('student-name');
   const studentDeptInput = document.getElementById('student-dept');
+  const studentIdInput = document.getElementById('student-id');
   const userDisplay = document.getElementById('user-display');
 
   // Check Session Storage for logged in student
   const savedName = sessionStorage.getItem('crc_student_name');
   const savedDept = sessionStorage.getItem('crc_student_dept');
+  const savedId = sessionStorage.getItem('crc_student_id');
 
-  if (savedName && savedDept) {
-    closeAuthModal(savedName, savedDept);
+  if (savedName && savedDept && savedId) {
+    closeAuthModal(savedName, savedDept, savedId);
   } else {
     // Prevent keyboard navigation until logged in
     Reveal.configure({ keyboard: false });
@@ -23,26 +25,28 @@ document.addEventListener('DOMContentLoaded', () => {
   btnStart.addEventListener('click', () => {
     const name = studentNameInput.value.trim();
     const dept = studentDeptInput.value.trim();
+    const sid = studentIdInput.value.trim();
 
-    if (!name || !dept) {
-      alert('請填寫完整姓名與系級後再開始研習！');
+    if (!name || !dept || !sid) {
+      alert('請填寫完整姓名、系級與學號後再開始研習！');
       return;
     }
 
     sessionStorage.setItem('crc_student_name', name);
     sessionStorage.setItem('crc_student_dept', dept);
+    sessionStorage.setItem('crc_student_id', sid);
     
     // Enable keyboard navigation
     Reveal.configure({ keyboard: true });
     
-    closeAuthModal(name, dept);
+    closeAuthModal(name, dept, sid);
   });
 
-  function closeAuthModal(name, dept) {
+  function closeAuthModal(name, dept, sid) {
     authModal.classList.add('closed');
     authBackdrop.classList.add('closed');
     if (userDisplay) {
-      userDisplay.textContent = `使用者：${name} (${dept})`;
+      userDisplay.textContent = `使用者：${name} (${dept} / ${sid})`;
       userDisplay.style.color = "var(--accent-cyan)";
     }
   }
@@ -255,6 +259,7 @@ async function submitReflection(slideNum, slideTitle, textareaId) {
 
   const name = sessionStorage.getItem('crc_student_name') || '未登錄';
   const dept = sessionStorage.getItem('crc_student_dept') || '未登錄';
+  const sid = sessionStorage.getItem('crc_student_id') || '未登錄';
 
   const responseText = textarea.value.trim();
   showStatus(statusDiv, '⏳ 資料傳送中...', 'loading');
@@ -262,6 +267,7 @@ async function submitReflection(slideNum, slideTitle, textareaId) {
   const payload = {
     PlayerName: name,
     Department: dept,
+    StudentID: sid,
     SlideNumber: slideNum,
     SlideTitle: slideTitle,
     ResponseText: responseText

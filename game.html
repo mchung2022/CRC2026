@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRC 學務前線：教師決策模擬戰</title>
+  <meta name="description" content="中學學務情境模擬抉擇遊戲，專為師培生設計，融匯兒童權利公約與 Bloom 認知面向。">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+  <!-- Animated Background Blobs -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <div class="game-viewport">
+    <!-- Header -->
+    <header class="game-header">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="index.html" class="btn btn-secondary" style="padding: 6px 15px; font-size: 0.8rem; border-radius: 8px;">
+          &larr; 返回首頁
+        </a>
+        <h1 class="game-title">CRC 學務前線</h1>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-muted);">
+        情境決策模擬戰 v1.0
+      </div>
+    </header>
+
+    <!-- Stats Panel -->
+    <section class="stats-container">
+      <!-- Stat 1: CRC -->
+      <div class="glass stat-card">
+        <div class="stat-label">
+          <span>🛡️ CRC 權利保障度</span>
+          <span class="stat-value cyan" id="stat-crc-val">50%</span>
+        </div>
+        <div class="stat-bar-outer">
+          <div class="stat-bar-inner cyan" id="stat-crc-bar" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <!-- Stat 2: Order -->
+      <div class="glass stat-card">
+        <div class="stat-label">
+          <span>⚖️ 校園管理秩序度</span>
+          <span class="stat-value purple" id="stat-order-val">50%</span>
+        </div>
+        <div class="stat-bar-outer">
+          <div class="stat-bar-inner purple" id="stat-order-bar" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <!-- Stat 3: Professionalism -->
+      <div class="glass stat-card">
+        <div class="stat-label">
+          <span>🎓 教師專業素養度</span>
+          <span class="stat-value pink" id="stat-prof-val">50%</span>
+        </div>
+        <div class="stat-bar-outer">
+          <div class="stat-bar-inner pink" id="stat-prof-bar" style="width: 50%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Workspace -->
+    <main class="game-main">
+      <!-- Left Column: Scenario & Choices -->
+      <div class="glass scenario-card" id="scenario-card">
+        <div>
+          <div class="scenario-header">
+            <span class="scenario-tag" id="bloom-tag">Level: Loading</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted);" id="case-counter">Case 1 / 6</span>
+          </div>
+          
+          <h2 class="scenario-title" id="scenario-title">正在加載學務個案...</h2>
+          
+          <div class="scenario-illustration" id="scenario-icon">
+            🎓
+          </div>
+
+          <div class="inquiry-bubble">
+            <span style="font-size: 1.2rem;">❓</span>
+            <span id="inquiry-text">探究思考：您將採取何種學務立場？</span>
+          </div>
+
+          <p class="scenario-description" id="scenario-description">
+            正在加載個案細節與衝突情境說明，請稍候。
+          </p>
+        </div>
+
+        <!-- Choices Box -->
+        <div class="choices-panel" id="choices-container">
+          <!-- Choice buttons will be injected here -->
+        </div>
+      </div>
+
+      <!-- Right Column: Decision Feed Log -->
+      <div class="glass" style="padding: 25px; display: flex; flex-direction: column;">
+        <div class="feed-panel">
+          <div class="feed-header">
+            <span>📜 導師決策歷程錄</span>
+            <span style="color: var(--accent-cyan); font-size: 0.8rem;" id="decision-count">0 已解</span>
+          </div>
+          <div class="feed-list" id="feed-list">
+            <!-- Game feed item template -->
+            <div class="feed-item" style="border: 1px dashed var(--glass-border); text-align: center; color: var(--text-muted); padding: 40px 10px;">
+              暫無決策紀錄。請在左側做出您的第一個學務決策！
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- End Game Modal -->
+  <div class="modal-overlay" id="end-modal">
+    <div class="glass result-card">
+      <div style="font-size: 3rem; margin-bottom: 10px;">🏆</div>
+      <h2 style="color: #fff;">挑戰完成！</h2>
+      <p style="color: var(--text-muted); font-size: 0.85rem;">您的決策特徵已完成運算，分析報告如下：</p>
+      
+      <div class="persona-title" id="persona-title">民主教育領航員</div>
+      <p class="persona-desc" id="persona-desc">
+        您能在確保校園基本常規的同時，將學生的主體權利置於重要考量，善用親師生協商與溝通，是實踐 CRC 的典範教師。
+      </p>
+
+      <!-- Final metrics -->
+      <div class="result-scores">
+        <div class="result-score-item">
+          <div class="result-score-label">🛡️ CRC 得分</div>
+          <div class="result-score-num" style="color: var(--accent-cyan);" id="res-crc">85%</div>
+        </div>
+        <div class="result-score-item">
+          <div class="result-score-label">⚖️ 秩序得分</div>
+          <div class="result-score-num" style="color: var(--accent-purple);" id="res-order">70%</div>
+        </div>
+        <div class="result-score-item">
+          <div class="result-score-label">🎓 專業得分</div>
+          <div class="result-score-num" style="color: var(--accent-pink);" id="res-prof">90%</div>
+        </div>
+      </div>
+
+      <!-- GAS Data Upload Form -->
+      <div class="submit-form">
+        <h4 style="text-align: left; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 5px;">✍️ 學習成果上傳（串接 Google Sheet）</h4>
+        
+        <div class="form-group">
+          <label for="player-name">師培生姓名</label>
+          <input type="text" id="player-name" class="form-input" placeholder="請輸入姓名" required>
+        </div>
+        <div class="form-group">
+          <label for="player-id">學號</label>
+          <input type="text" id="player-id" class="form-input" placeholder="請輸入學號" required>
+        </div>
+
+        <div style="display: flex; gap: 15px; width: 100%; margin-top: 10px;">
+          <button class="btn btn-secondary" id="btn-restart" style="flex: 1;">重新挑戰</button>
+          <button class="btn btn-primary" id="btn-submit-score" style="flex: 2;">送出成果 &rarr;</button>
+        </div>
+        <div id="upload-status" class="status-message"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRC 中學學務實踐：線上遊戲與 HTML 簡報平台</title>
+  <meta name="description" content="專為大二師培生設計的兒童權利公約 (CRC) 中學學生事務實踐學習平台，結合 50 頁互動簡報與情境決策模擬遊戲。">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Portal specific styles */
+    .portal-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    .portal-header {
+      text-align: center;
+      margin-bottom: 50px;
+      z-index: 10;
+    }
+
+    .portal-title {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+
+    .portal-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .portal-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      max-width: 1000px;
+      width: 100%;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .portal-cards {
+        grid-template-columns: 1fr;
+      }
+      .portal-title {
+        font-size: 2rem;
+      }
+    }
+
+    .portal-card {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      min-height: 380px;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portal-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: -1;
+    }
+
+    .portal-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .portal-card:hover::after {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .card-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    /* Settings Button */
+    .settings-trigger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: var(--transition-smooth);
+      z-index: 100;
+    }
+
+    .settings-trigger:hover {
+      border-color: var(--accent-cyan);
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+    }
+
+    .settings-badge {
+      position: fixed;
+      top: 25px;
+      right: 75px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      z-index: 99;
+      background: rgba(0,0,0,0.4);
+      padding: 4px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background Blobs -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- GAS API Settings Gear -->
+  <div class="settings-badge" id="settings-status">Google Sheet: 未連線</div>
+  <button class="settings-trigger" id="open-settings-btn" title="設定後端 Google Sheet API">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+    </svg>
+  </button>
+
+  <div class="portal-container">
+    <header class="portal-header">
+      <h1 class="portal-title">CRC 中學學務實踐</h1>
+      <p class="portal-subtitle">大二師培生專屬：兒童權利公約中學實踐與導師決策之數位培力</p>
+    </header>
+
+    <main class="portal-cards">
+      <!-- Card 1: Slides -->
+      <section class="portal-card glass glass-glow-cyan" id="card-slides">
+        <div>
+          <div class="card-icon">📖</div>
+          <h2 class="card-title">CRC 互動簡報</h2>
+          <p class="card-desc">全套 50 頁學務專題簡報，以 Bloom 認知分類 (記憶、理解、應用、分析、評估、創造) 循序引導。融入探究思辨任務與素養思考，為您的中學班級經營與輔導管教奠定法理基礎。</p>
+        </div>
+        <a href="slides.html" class="btn btn-primary">進入簡報之旅 &rarr;</a>
+      </section>
+
+      <!-- Card 2: Game -->
+      <section class="portal-card glass glass-glow-purple" id="card-game">
+        <div>
+          <div class="card-icon">🎮</div>
+          <h2 class="card-title">學務前線情境模擬</h2>
+          <p class="card-desc">初任導師的考驗！面對搜書包、服儀糾紛、學生集體表意等真實校園爭端。在「保障權益」、「校園秩序」與「教師專業」三者間權衡，探究親師生折衝智慧，產出您的 CRC 教師人格！</p>
+        </div>
+        <a href="game.html" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%); box-shadow: 0 4px 15px rgba(155, 81, 224, 0.4);">開啟模擬挑戰 &rarr;</a>
+      </section>
+    </main>
+  </div>
+
+  <!-- Settings Modal Backdrop -->
+  <div class="backdrop" id="modal-backdrop"></div>
+
+  <!-- Settings Modal -->
+  <div class="google-sheet-settings-modal" id="settings-modal">
+    <h3 style="margin-bottom: 15px; color: var(--accent-cyan);">⚙️ 後端 Google Sheet 串接設定</h3>
+    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;">
+      請輸入您在 Google 雲端硬碟建立並部署為 Web App 的 Google Apps Script 網址。這將用於記錄簡報的反饋與遊戲的分數。
+    </p>
+    <div class="form-group">
+      <label for="gas-url-input">Google Apps Script Web App 網址</label>
+      <input type="text" id="gas-url-input" placeholder="https://script.google.com/macros/s/.../exec">
+    </div>
+    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+      <button class="btn btn-secondary" id="close-settings-btn" style="padding: 8px 20px; font-size: 0.85rem;">取消</button>
+      <button class="btn btn-primary" id="save-settings-btn" style="padding: 8px 20px; font-size: 0.85rem;">儲存設定</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script>
+    // Portal settings interface logic
+    const openBtn = document.getElementById('open-settings-btn');
+    const closeBtn = document.getElementById('close-settings-btn');
+    const saveBtn = document.getElementById('save-settings-btn');
+    const backdrop = document.getElementById('modal-backdrop');
+    const modal = document.getElementById('settings-modal');
+    const inputField = document.getElementById('gas-url-input');
+    const statusText = document.getElementById('settings-status');
+
+    function updateStatusUI() {
+      const activeUrl = ConfigManager.getApiUrl();
+      if (activeUrl) {
+        statusText.textContent = "Google Sheet: 已連線";
+        statusText.style.color = "var(--accent-cyan)";
+        statusText.style.borderColor = "var(--accent-cyan)";
+      } else {
+        statusText.textContent = "Google Sheet: 未連線";
+        statusText.style.color = "var(--text-muted)";
+        statusText.style.borderColor = "var(--glass-border)";
+      }
+    }
+
+    openBtn.addEventListener('click', () => {
+      inputField.value = ConfigManager.getApiUrl();
+      modal.classList.add('open');
+      backdrop.classList.add('open');
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      backdrop.classList.remove('open');
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    saveBtn.addEventListener('click', () => {
+      ConfigManager.setApiUrl(inputField.value);
+      updateStatusUI();
+      closeModal();
+    });
+
+    // Initialize UI Status
+    updateStatusUI();
+  </script>
+</body>
+</html>

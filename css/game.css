@@ -1,0 +1,411 @@
+/* css/game.css - CRC Student Affairs Decision Game Styling */
+
+.game-viewport {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Header & Status Indicators */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.game-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-value {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.stat-value.cyan { color: var(--accent-cyan); }
+.stat-value.purple { color: var(--accent-purple); }
+.stat-value.pink { color: var(--accent-pink); }
+
+.stat-bar-outer {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat-bar-inner {
+  height: 100%;
+  border-radius: 4px;
+  width: 50%;
+  transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.stat-bar-inner.cyan {
+  background: linear-gradient(90deg, #00cdac 0%, var(--accent-cyan) 100%);
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+}
+
+.stat-bar-inner.purple {
+  background: linear-gradient(90deg, #7f00ff 0%, var(--accent-purple) 100%);
+  box-shadow: 0 0 8px rgba(155, 81, 224, 0.5);
+}
+
+.stat-bar-inner.pink {
+  background: linear-gradient(90deg, #ec008c 0%, var(--accent-pink) 100%);
+  box-shadow: 0 0 8px rgba(247, 37, 133, 0.5);
+}
+
+/* Card Scenario Area */
+.game-main {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+  .game-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scenario-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.scenario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.scenario-tag {
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  color: var(--accent-cyan);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.scenario-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.scenario-illustration {
+  height: 140px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.08) 0%, rgba(155, 81, 224, 0.08) 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.scenario-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+.inquiry-bubble {
+  background: rgba(255, 159, 67, 0.08);
+  border: 1px dashed rgba(255, 159, 67, 0.3);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--accent-orange);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Choices Panel */
+.choices-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.choice-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 15px 20px;
+  text-align: left;
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+
+.choice-btn:hover {
+  background: rgba(0, 242, 254, 0.05);
+  border-color: var(--accent-cyan);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.1);
+}
+
+.choice-btn::before {
+  content: attr(data-prefix);
+  font-weight: 800;
+  color: var(--accent-cyan);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.choice-btn:nth-child(2):hover {
+  background: rgba(155, 81, 224, 0.05);
+  border-color: var(--accent-purple);
+  box-shadow: 0 4px 15px rgba(155, 81, 224, 0.1);
+}
+.choice-btn:nth-child(2)::before {
+  color: var(--accent-purple);
+}
+
+.choice-btn:nth-child(3):hover {
+  background: rgba(247, 37, 133, 0.05);
+  border-color: var(--accent-pink);
+  box-shadow: 0 4px 15px rgba(247, 37, 133, 0.1);
+}
+.choice-btn:nth-child(3)::before {
+  color: var(--accent-pink);
+}
+
+/* History / Feed log */
+.feed-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.feed-header {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: 480px;
+  flex-grow: 1;
+}
+
+.feed-item {
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.feed-item-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.feed-item-desc {
+  color: var(--text-muted);
+}
+
+/* End Game Overlay / Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 7, 15, 0.85);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.result-card {
+  max-width: 600px;
+  width: 90%;
+  padding: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: modalSlide 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes modalSlide {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.persona-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 15px 0;
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.persona-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.result-scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.result-score-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.result-score-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.result-score-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+/* Form Styles */
+.submit-form {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.form-input:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.25);
+  outline: none;
+}
+
+.status-message {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  font-weight: 500;
+  height: 20px;
+}
+
+.status-success { color: #51cf66; }
+.status-error { color: #ff8787; }
+.status-loading { color: var(--accent-cyan); }

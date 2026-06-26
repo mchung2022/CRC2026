@@ -10,18 +10,11 @@
 function doGet(e) {
   return ContentService.createTextOutput(JSON.stringify({
     status: "success",
-    message: "CRC Student Affairs GAS Backend is online! Send POST requests to write data."
+    message: "CRC 後端服務已啟動！請使用 POST 請求傳送數據。"
   })).setMimeType(ContentService.MimeType.JSON);
 }
 
 function doPost(e) {
-  // Add CORS headers support
-  var headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type"
-  };
-
   try {
     var rawData = e.postData.contents;
     var requestData = JSON.parse(rawData);
@@ -36,7 +29,7 @@ function doPost(e) {
     } else {
       return ContentService.createTextOutput(JSON.stringify({
         success: false,
-        error: "Invalid action. Supported actions: 'addData'"
+        error: "不支援的 Action 指令"
       })).setMimeType(ContentService.MimeType.JSON);
     }
   } catch (error) {
@@ -49,14 +42,12 @@ function doPost(e) {
 
 // Handle preflight OPTIONS requests for CORS (if browsers make them)
 function doOptions(e) {
-  var output = ContentService.createTextOutput("");
-  output.setMimeType(ContentService.MimeType.TEXT);
-  return output;
+  return ContentService.createTextOutput("").setMimeType(ContentService.MimeType.TEXT);
 }
 
 /**
  * Appends a row of data to the specified sheet.
- * Auto-creates the sheet tab and headers if they do not exist.
+ * Auto-creates the sheet tab and headers if they do not exist or are empty.
  */
 function addDataToSheet(sheetName, data) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -80,11 +71,16 @@ function addDataToSheet(sheetName, data) {
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
     sheet.appendRow(defaultHeaders);
-    // Format header row
+    sheet.getRange(1, 1, 1, defaultHeaders.length).setFontWeight("bold").setBackground("#e0f2fe");
+  } 
+  // CRITICAL BUG FIX: If sheet exists but is empty, getLastColumn() returns 0.
+  // We must initialize the headers to prevent Range Error.
+  else if (sheet.getLastColumn() === 0) {
+    sheet.appendRow(defaultHeaders);
     sheet.getRange(1, 1, 1, defaultHeaders.length).setFontWeight("bold").setBackground("#e0f2fe");
   }
 
-  // Double-check headers are matching and build values array
+  // Double-check headers mapping
   var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   
   // Migrate headers for game_scores if needed
@@ -95,7 +91,7 @@ function addDataToSheet(sheetName, data) {
     headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   }
 
-  // Migrate headers for slides_feedback if needed (adding PlayerName and Department to older versions)
+  // Migrate headers for slides_feedback if needed
   if (sheetName === "slides_feedback" && headers.indexOf("PlayerName") === -1) {
     var missingFeedbackHeaders = ["PlayerName", "Department"];
     var currentLastCol = sheet.getLastColumn();
